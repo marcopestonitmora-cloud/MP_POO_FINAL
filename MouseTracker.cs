@@ -13,7 +13,7 @@ public class MouseTracker
     private Vector2i mousePosition;
     private Vector2f mouseVector;
 
-    public void Update(RenderWindow window)
+    public void UpdateMouse(RenderWindow window)
     {
         mousePosition = Mouse.GetPosition(window);
         mouseVector = new Vector2f(mousePosition.X, mousePosition.Y);

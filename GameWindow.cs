@@ -13,15 +13,25 @@ public class GameWindow
     
     public static void Window()
     {
-        texture_background = new Texture("Sprites/background.png");
-        background =  new Sprite(texture_background);
         RenderWindow gameplayWindow = new RenderWindow(new VideoMode((1920, 1080), 600),"GameWindow");
         gameplayWindow.SetFramerateLimit(60);
+        
+        //Background
+        texture_background = new Texture("Sprites/casino_background.png");
+        background =  new Sprite(texture_background);
+        background.Position = new Vector2f(0, 0);
+        background.Scale = new Vector2f(1.3f, 1.3f);
+        
+        //Board
+        
+        
 
         while (gameplayWindow.IsOpen)
         {
             gameplayWindow.DispatchEvents();
+            gameplayWindow.Clear(color:Color.White);
             gameplayWindow.Draw(background);
+            gameplayWindow.Display();
         }
     }
 }
