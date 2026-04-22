@@ -121,3 +121,4 @@ C:\Users\marco\Desktop\U-tad\2ºCuatri\POO\MP_POO_FINAL\obj\Debug\net10.0\refint
 C:\Users\marco\Desktop\U-tad\2ºCuatri\POO\MP_POO_FINAL\obj\Debug\net10.0\MP_POO_FINAL.pdb
 C:\Users\marco\Desktop\U-tad\2ºCuatri\POO\MP_POO_FINAL\obj\Debug\net10.0\MP_POO_FINAL.genruntimeconfig.cache
 C:\Users\marco\Desktop\U-tad\2ºCuatri\POO\MP_POO_FINAL\obj\Debug\net10.0\ref\MP_POO_FINAL.dll
+C:\Users\marco\Desktop\U-tad\2ºCuatri\POO\MP_POO_FINAL\obj\Debug\net10.0\MP_POO_FINAL.sourcelink.json
