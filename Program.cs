@@ -2,8 +2,9 @@
 
 class Program
 {
-    static void Main(string[] args)
+    public static void Main(string[] args)
     {
-        GameWindow.Window();
+        GameWindow window = new GameWindow();
+        window.InitWindowRaylib();
     }
 }

@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "C/1ZrHtUQaU=",
+  "dgSpecHash": "Z4I2v9bbul4=",
   "success": true,
   "projectFilePath": "C:\\Users\\marco\\Desktop\\U-tad\\2ºCuatri\\POO\\MP_POO_FINAL\\MP_POO_FINAL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marco\\.nuget\\packages\\csfml\\3.0.0\\csfml.3.0.0.nupkg.sha512",
+    "C:\\Users\\marco\\.nuget\\packages\\raylib-cs\\7.0.2\\raylib-cs.7.0.2.nupkg.sha512",
     "C:\\Users\\marco\\.nuget\\packages\\sfml.audio\\3.0.0\\sfml.audio.3.0.0.nupkg.sha512",
     "C:\\Users\\marco\\.nuget\\packages\\sfml.graphics\\3.0.0\\sfml.graphics.3.0.0.nupkg.sha512",
     "C:\\Users\\marco\\.nuget\\packages\\sfml.net\\3.0.0\\sfml.net.3.0.0.nupkg.sha512",
