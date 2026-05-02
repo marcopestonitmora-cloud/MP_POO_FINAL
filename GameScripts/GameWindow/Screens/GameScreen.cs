@@ -13,6 +13,7 @@ public class GameScreen : IScreen
     {
         buttonLogic.DiceButton(gameUi.diceButton, mouse);
         buttonLogic.InventoryButton(gameUi.inventoryButton, mouse);
+        buttonLogic.StartDiceRollButton(gameUi.startDiceRollButton, mouse);
     }
 
     public void Draw() => gameUi.LoadEssentials();

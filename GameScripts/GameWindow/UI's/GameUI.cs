@@ -6,7 +6,6 @@ namespace MP_POO_FINAL.GameScripts.GameWindow;
 
 public class GameUI
 {
-    
     DrawInvicoins drawInvicoins =  new DrawInvicoins(100);
     
     private Texture2D board;
@@ -22,6 +21,9 @@ public class GameUI
 
     public Button diceButton = new Button(116, 1010, 200, 50);
     public Button inventoryButton = new Button(1600, 1010, 200, 50);
+    public Button startDiceRollButton = new Button(600, 450, 400, 400);
+
+    private bool rollStart = false;
     
     public void LoadAssets()
     {
@@ -34,7 +36,7 @@ public class GameUI
         
         drawInvicoins.LoadNumbers();
         //cardIcone = Raylib.LoadTexture("Sprites/CardIcone.png");
-        //diceIcone = Raylib.LoadTexture("Sprites/DiceIcone.png");
+        diceIcone = Raylib.LoadTexture("Sprites/DiceIcone.png");
     }
 
     public void LoadWindowInfo()
@@ -54,6 +56,18 @@ public class GameUI
         Raylib.DrawTextureEx(playerIcone, new Vector2(-30, 0), 0, 0.2f, Color.White);
         Raylib.DrawTextureEx(Ai1Icone, new Vector2(-30, 160), 0, 0.2f, Color.White);
         Raylib.DrawTextureEx(Ai2Icone, new Vector2(-30, 320), 0, 0.2f, Color.White);
+
+        if (rollStart == false)
+        {
+            RollStart();
+        }
+    }
+    
+    private void RollStart()
+    {
+        Raylib.DrawRectangle(435,300,1100,100,Color.Black);
+        Raylib.DrawText("ROLL TO SEE WHO STARTS",450,320,75,Color.White);
+        Raylib.DrawTextureEx(diceIcone, new Vector2(660,450), 0, 0.7f, Color.White);
     }
 }
 

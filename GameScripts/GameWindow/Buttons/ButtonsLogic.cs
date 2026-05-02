@@ -3,6 +3,7 @@
 public class ButtonsLogic
 {
     DiceRoll diceRoll =  new DiceRoll();
+    GameEvents gameEvents = new GameEvents();
     
     public void DiceButton(Button playButton, MouseTracker mouse)
     {
@@ -29,5 +30,11 @@ public class ButtonsLogic
     {
         playButton.Update(mouse);
         return playButton.IsClicked();
+    }
+
+    public void StartDiceRollButton(Button startDiceRollButton, MouseTracker mouse)
+    {
+        startDiceRollButton.Update(mouse);
+        gameEvents.StartDiceRoll();
     }
 }

@@ -7,13 +7,18 @@ public class GameWindow
 {
     private MouseTracker mouse = new MouseTracker();
     private ButtonsLogic buttonLogic = new ButtonsLogic();
+    
     private IScreen currentScreen;
+    
     private StartScreen startScreen = new StartScreen();
     private GameScreen gameScreen = new GameScreen();
+    
+    private GameEvents gameEvents = new GameEvents();
 
     public void Run()
     {
         Raylib.InitWindow(1920, 1080, "Monopoly");
+        
         startScreen.LoadAssets();
         gameScreen.LoadAssets();
         

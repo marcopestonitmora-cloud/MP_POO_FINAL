@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MP_POO_FINAL")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b165aba838338b9b8015a3e74d6ffa67b3ce9829")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+63c71f0c87f38ce9ca4bad71b1810beed347679d")]
 [assembly: System.Reflection.AssemblyProductAttribute("MP_POO_FINAL")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MP_POO_FINAL")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

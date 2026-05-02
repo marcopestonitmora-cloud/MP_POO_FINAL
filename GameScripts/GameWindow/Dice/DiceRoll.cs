@@ -4,12 +4,14 @@ namespace MP_POO_FINAL.GameScripts;
 
 public class DiceRoll
 {
-    public void RollTheDice()
+    public int RollTheDice()
     {
         Random random = new Random();
         
         int numero = random.Next(1,7); 
         
         Console.WriteLine(numero);
+        
+        return numero;
     }
 }
