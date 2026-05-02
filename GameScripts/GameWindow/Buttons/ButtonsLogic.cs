@@ -1,17 +1,16 @@
-﻿using System.Numerics;
-using MP_POO_FINAL.GameScripts;
-using Raylib_cs;
-
-namespace MP_POO_FINAL;
+﻿namespace MP_POO_FINAL.GameScripts.GameWindow.Buttons;
 
 public class ButtonsLogic
 {
+    DiceRoll diceRoll =  new DiceRoll();
+    
     public void DiceButton(Button playButton, MouseTracker mouse)
     {
         playButton.Update(mouse);
 
         if (playButton.IsClicked())
         {
+            diceRoll.RollTheDice();
             Console.WriteLine("Boton presionado!");
         }
     }
@@ -22,7 +21,13 @@ public class ButtonsLogic
 
         if (inventoryButton.IsClicked())
         {
-            Console.WriteLine("Boton presionado!");
+            Console.WriteLine("PUTA vigo!");
         }
+    }
+
+    public bool PlayButton(Button playButton, MouseTracker mouse)
+    {
+        playButton.Update(mouse);
+        return playButton.IsClicked();
     }
 }

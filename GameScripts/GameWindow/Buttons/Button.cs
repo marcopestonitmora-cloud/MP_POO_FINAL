@@ -1,14 +1,7 @@
-﻿using System.Numerics;
-using MP_POO_FINAL.GameScripts;
-using Raylib_cs;
-
-namespace MP_POO_FINAL;
+﻿namespace MP_POO_FINAL.GameScripts.GameWindow.Buttons;
 
 public class Button(int x, int y, int width, int height)
 {
-    private Color overShape = Color.Blue;
-    private Color pressedShape = Color.Yellow;
-
     private bool isOver = false;
     private bool isPressed = false;
 

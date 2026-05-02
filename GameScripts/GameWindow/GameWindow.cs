@@ -1,35 +1,39 @@
-﻿using System.Numerics;
-using MP_POO_FINAL.GameScripts;
+﻿using MP_POO_FINAL.GameScripts.GameWindow.Buttons;
 using Raylib_cs;
 
-namespace MP_POO_FINAL;
+namespace MP_POO_FINAL.GameScripts.GameWindow;
 
-public class GameWindow 
-{   
-    MouseTracker mouse =  new MouseTracker();
-    ButtonsLogic buttonLogic = new ButtonsLogic();
-    GameUI ui = new GameUI();
-    
-    private int width = 1920;
-    private int height = 1080;
-    
-    public void InitWindowRaylib()
+public class GameWindow
+{
+    private MouseTracker mouse = new MouseTracker();
+    private ButtonsLogic buttonLogic = new ButtonsLogic();
+    private IScreen currentScreen;
+    private StartScreen startScreen = new StartScreen();
+    private GameScreen gameScreen = new GameScreen();
+
+    public void Run()
     {
-        Raylib.InitWindow(width, height, "Mi Juego en Raylib");
-        ui.LoadAssets();
+        Raylib.InitWindow(1920, 1080, "Monopoly");
+        startScreen.LoadAssets();
+        gameScreen.LoadAssets();
         
+        currentScreen = startScreen;
+
         while (!Raylib.WindowShouldClose())
         {
-            buttonLogic.DiceButton(ui.diceButton,mouse);
-            buttonLogic.InventoryButton(ui.inventoryButton,mouse);
             mouse.MouseTrack();
+            currentScreen.Update(mouse, buttonLogic);
+
+            if (startScreen.NextState == GameState.InGame)
+            {
+                currentScreen = gameScreen;
+            }
+
             Raylib.BeginDrawing();
-            ui.LoadWindowInfo();
+            currentScreen.Draw();
             Raylib.EndDrawing();
         }
-        Raylib.CloseWindow(); 
+
+        Raylib.CloseWindow();
     }
 }
-
-
-

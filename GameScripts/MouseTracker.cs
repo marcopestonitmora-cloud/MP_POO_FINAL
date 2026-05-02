@@ -18,7 +18,7 @@ public class MouseTracker
 
     public bool ClickTracker()
     {
-        clicked = Raylib.IsMouseButtonDown(MouseButton.Left);
+        clicked = Raylib.IsMouseButtonPressed(MouseButton.Left);
         return clicked;
     }
 }

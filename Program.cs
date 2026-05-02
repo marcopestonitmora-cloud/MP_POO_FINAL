@@ -4,7 +4,7 @@ class Program
 {
     public static void Main(string[] args)
     {
-        GameWindow window = new GameWindow();
-        window.InitWindowRaylib();
+        GameLoop gameLoop = new GameLoop();
+        gameLoop.Loop();
     }
 }
