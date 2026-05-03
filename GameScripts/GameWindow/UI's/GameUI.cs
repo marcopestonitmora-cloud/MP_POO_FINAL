@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
 
 using MP_POO_FINAL.GameScripts.GameWindow.Buttons;
+using MP_POO_FINAL.GameScripts.GameWindow.UI_s;
 using MP_POO_FINAL.GameScripts.Managers;
 using Raylib_cs;
 
@@ -10,6 +11,8 @@ public class GameUI
 {
     DrawInvicoins drawInvicoins =  new DrawInvicoins(100);
     private StartRoll startRoll = new StartRoll();
+    private PlayerTurnUI playerUI = new PlayerTurnUI();
+    private WhoWinsTheRollUi rollWinnerUI = new WhoWinsTheRollUi();
     
     private Texture2D board;
     private Texture2D background;
@@ -17,12 +20,11 @@ public class GameUI
     private Texture2D playerIcone;
     private Texture2D Ai1Icone;
     private Texture2D Ai2Icone;
+    private Texture2D cardIcone;
 
     public Button diceButton = new Button(116, 1010, 200, 50);
     public Button inventoryButton = new Button(1600, 1010, 200, 50);
     public Button startDiceRollButton = new Button(600, 450, 400, 400);
-
-    public bool rollStart = false;
     
     public void LoadAssets()
     {
@@ -35,10 +37,11 @@ public class GameUI
         
         drawInvicoins.LoadNumbers();
         
+        cardIcone = Raylib.LoadTexture("Sprites/CardIcone.png");
         diceIcone = Raylib.LoadTexture("Sprites/DiceIcone.png");
     }
 
-    public void LoadEssentials()
+    private void DrawEssentials()
     {
         Raylib.ClearBackground(Color.White);
         Raylib.DrawTextureEx(background, new Vector2(0,0), 0f, 1.3f, Color.White);
@@ -59,13 +62,25 @@ public class GameUI
         {
             case GamePhase.RollToStart:
             {
-                LoadEssentials();
+                DrawEssentials();
                 startRoll.RollStart(diceIcone);
+                break;
+            }
+            case GamePhase.WhoWinsTheRoll:
+            {
+                DrawEssentials();
+                rollWinnerUI.DrawRollWinner();
                 break;
             }
             case GamePhase.Playing:
             {
-                LoadEssentials();
+                DrawEssentials();
+                playerUI.DrawPlayerUI();
+                break;
+            }
+            case GamePhase.AiTurn:
+            {
+                DrawEssentials();
                 break;
             }
         }

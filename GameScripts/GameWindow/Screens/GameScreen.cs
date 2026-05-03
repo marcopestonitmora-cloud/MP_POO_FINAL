@@ -15,7 +15,7 @@ public class GameScreen : IScreen
         switch (GameManagers.Instance.Phase)
         {
             case GamePhase.RollToStart:
-                buttonLogic.StartDiceRollButton(gameUi.startDiceRollButton, mouse);
+                buttonLogic.StartDiceRollButton(gameUi.startDiceRollButton, mouse, GameManagers.Instance.GameEvents);
                 break;
             case GamePhase.Playing:
                 buttonLogic.DiceButton(gameUi.diceButton, mouse);

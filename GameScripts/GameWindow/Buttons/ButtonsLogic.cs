@@ -5,7 +5,6 @@ namespace MP_POO_FINAL.GameScripts.GameWindow.Buttons;
 public class ButtonsLogic
 {
     DiceRoll diceRoll =  new DiceRoll();
-    GameEvents gameEvents = new GameEvents();
     
     public void DiceButton(Button playButton, MouseTracker mouse)
     {
@@ -34,12 +33,12 @@ public class ButtonsLogic
         return playButton.IsClicked();
     }
 
-    public async void StartDiceRollButton(Button button, MouseTracker mouse)
+    public async void StartDiceRollButton(Button button, MouseTracker mouse, GameEvents gameEvents)
     {
         button.Update(mouse);
         if (button.IsClicked())
         {
-            await GameManagers.Instance.GameEvents.StartDiceRoll();
+            await gameEvents.startRollEvent.StartDiceRoll();
         }
     }
 }
