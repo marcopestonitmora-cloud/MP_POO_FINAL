@@ -1,5 +1,7 @@
 ﻿using System.Numerics;
+
 using MP_POO_FINAL.GameScripts.GameWindow.Buttons;
+using MP_POO_FINAL.GameScripts.Managers;
 using Raylib_cs;
 
 namespace MP_POO_FINAL.GameScripts.GameWindow;
@@ -7,23 +9,20 @@ namespace MP_POO_FINAL.GameScripts.GameWindow;
 public class GameUI
 {
     DrawInvicoins drawInvicoins =  new DrawInvicoins(100);
+    private StartRoll startRoll = new StartRoll();
     
     private Texture2D board;
     private Texture2D background;
-    private Texture2D cardIcone;
     private Texture2D diceIcone;
     private Texture2D playerIcone;
     private Texture2D Ai1Icone;
     private Texture2D Ai2Icone;
-    
-    private string diceText = "TIRAR";
-    private string inventoryText = "INVENTARIO";
 
     public Button diceButton = new Button(116, 1010, 200, 50);
     public Button inventoryButton = new Button(1600, 1010, 200, 50);
     public Button startDiceRollButton = new Button(600, 450, 400, 400);
 
-    private bool rollStart = false;
+    public bool rollStart = false;
     
     public void LoadAssets()
     {
@@ -35,16 +34,8 @@ public class GameUI
         Ai2Icone = Raylib.LoadTexture("Sprites/Ai2.png");
         
         drawInvicoins.LoadNumbers();
-        //cardIcone = Raylib.LoadTexture("Sprites/CardIcone.png");
+        
         diceIcone = Raylib.LoadTexture("Sprites/DiceIcone.png");
-    }
-
-    public void LoadWindowInfo()
-    {
-        //Raylib.DrawTextureEx(diceIcone, new Vector2(80,850), 0, 0.3f, Color.White);
-        //Raylib.DrawText(diceText,130,1010,50,Color.White);
-        //Raylib.DrawTextureEx(cardIcone, new Vector2(1600,800), 0f, 0.2f, Color.White);
-        //Raylib.DrawText(inventoryText,1540,1010,50,Color.White);
     }
 
     public void LoadEssentials()
@@ -56,18 +47,15 @@ public class GameUI
         Raylib.DrawTextureEx(playerIcone, new Vector2(-30, 0), 0, 0.2f, Color.White);
         Raylib.DrawTextureEx(Ai1Icone, new Vector2(-30, 160), 0, 0.2f, Color.White);
         Raylib.DrawTextureEx(Ai2Icone, new Vector2(-30, 320), 0, 0.2f, Color.White);
+        
+        drawInvicoins.Draw(120,80);
+        drawInvicoins.Draw(120,240);
+        drawInvicoins.Draw(120,400);
 
         if (rollStart == false)
         {
-            RollStart();
+            startRoll.RollStart(diceIcone);
         }
-    }
-    
-    private void RollStart()
-    {
-        Raylib.DrawRectangle(435,300,1100,100,Color.Black);
-        Raylib.DrawText("ROLL TO SEE WHO STARTS",450,320,75,Color.White);
-        Raylib.DrawTextureEx(diceIcone, new Vector2(660,450), 0, 0.7f, Color.White);
     }
 }
 

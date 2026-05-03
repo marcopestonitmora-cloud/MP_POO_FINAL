@@ -20,7 +20,7 @@ public class ButtonsLogic
     {
         inventoryButton.Update(mouse);
 
-        if (inventoryButton.IsClicked())
+        if (inventoryButton.IsClicked()) //Añadir && Tu turno, que solo puedas pulsarlo si es tu turno
         {
             Console.WriteLine("PUTA vigo!");
         }
@@ -35,6 +35,9 @@ public class ButtonsLogic
     public void StartDiceRollButton(Button startDiceRollButton, MouseTracker mouse)
     {
         startDiceRollButton.Update(mouse);
-        gameEvents.StartDiceRoll();
+        if (startDiceRollButton.IsClicked())
+        {
+            gameEvents.StartDiceRoll();
+        }
     }
 }
