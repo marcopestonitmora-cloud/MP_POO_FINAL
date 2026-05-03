@@ -1,4 +1,6 @@
-﻿namespace MP_POO_FINAL.GameScripts.GameWindow.Buttons;
+﻿using MP_POO_FINAL.GameScripts.Managers;
+
+namespace MP_POO_FINAL.GameScripts.GameWindow.Buttons;
 
 public class ButtonsLogic
 {
@@ -32,12 +34,12 @@ public class ButtonsLogic
         return playButton.IsClicked();
     }
 
-    public void StartDiceRollButton(Button startDiceRollButton, MouseTracker mouse)
+    public async void StartDiceRollButton(Button button, MouseTracker mouse)
     {
-        startDiceRollButton.Update(mouse);
-        if (startDiceRollButton.IsClicked())
+        button.Update(mouse);
+        if (button.IsClicked())
         {
-            gameEvents.StartDiceRoll();
+            await GameManagers.Instance.GameEvents.StartDiceRoll();
         }
     }
 }

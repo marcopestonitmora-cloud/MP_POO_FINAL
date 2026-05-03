@@ -51,10 +51,23 @@ public class GameUI
         drawInvicoins.Draw(120,80);
         drawInvicoins.Draw(120,240);
         drawInvicoins.Draw(120,400);
+    }
 
-        if (rollStart == false)
+    public void SceneChange()
+    {
+        switch (GameManagers.Instance.Phase)
         {
-            startRoll.RollStart(diceIcone);
+            case GamePhase.RollToStart:
+            {
+                LoadEssentials();
+                startRoll.RollStart(diceIcone);
+                break;
+            }
+            case GamePhase.Playing:
+            {
+                LoadEssentials();
+                break;
+            }
         }
     }
 }
