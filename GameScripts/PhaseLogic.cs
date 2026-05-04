@@ -6,11 +6,14 @@ namespace MP_POO_FINAL.GameScripts;
 
 public class PhaseLogic
 {
-    private StartRoll startRoll = new StartRoll();
+    private EventManager eventManager = EventManager.Instance;
+    private StartRollUI startRollUi = new StartRollUI();
     private PlayerTurnUI playerUI = new PlayerTurnUI();
-    private AiTurnUI aiTurnUI = new AiTurnUI();
+    private AiTurnUi aiTurnUI = new AiTurnUi();
     private WhoWinsTheRollUi rollWinnerUI = new WhoWinsTheRollUi();
     private GameUI gameUI;
+    
+    private bool aiTurnStarted = false;
 
     public PhaseLogic(GameUI gameUi)
     {
@@ -19,12 +22,12 @@ public class PhaseLogic
 
     public void SceneChange()
     {
-        switch (GameManagers.Instance.Phase)
+        switch (EventManager.Instance.Phase)
         {
             case GamePhase.RollToStart:
             {
                 gameUI.DrawEssentials();
-                startRoll.RollStart(gameUI.diceIcone);
+                startRollUi.RollStart(gameUI.diceIcone);
                 break;
             }
             case GamePhase.WhoWinsTheRoll:
@@ -39,10 +42,26 @@ public class PhaseLogic
                 playerUI.DrawPlayerUI();
                 break;
             }
-            case GamePhase.AiTurn:
+            case GamePhase.Ai1Turn:
             {
                 gameUI.DrawEssentials();
-                aiTurnUI.DrawAiUI();
+                aiTurnUI.DrawAiUi();
+                if (!aiTurnStarted)
+                {
+                    aiTurnStarted = true;
+                    Task.Run(async () => {await Task.Delay(1000); eventManager.GameEvents.aiEvents.AiTurnEnd();});
+                }
+                break;
+            }
+            case GamePhase.Ai2Turn:
+            {
+                gameUI.DrawEssentials();
+                aiTurnUI.DrawAiUi();
+                if (!aiTurnStarted)
+                {
+                    aiTurnStarted = true;
+                    Task.Run(async () => {await Task.Delay(1000); eventManager.GameEvents.aiEvents.AiTurnEnd();});
+                }
                 break;
             }
         }

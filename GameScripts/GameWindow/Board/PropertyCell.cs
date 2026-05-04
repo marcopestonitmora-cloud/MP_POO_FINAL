@@ -12,7 +12,7 @@ public class PropertyCell: BoardCell
     public int CreditPrice    { get; private set; }
     public int RentPrice      { get; private set; }
     
-    public PropertyCell(int index, string name, Vector2 screenPosition, string color, int price, int owner, int creditPrice, int rentPrice) : base(index, name, screenPosition)
+    public PropertyCell(int index, string name, Vector2 screenPosition, string color, int price, int owner, int creditPrice, int rentPrice) : base(index,name, screenPosition)
     {
         Color = color;
         Price = price;

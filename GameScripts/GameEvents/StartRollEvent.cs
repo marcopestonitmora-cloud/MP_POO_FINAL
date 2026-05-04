@@ -1,4 +1,5 @@
-﻿using Raylib_cs;
+﻿using MP_POO_FINAL.GameScripts.Managers;
+using Raylib_cs;
 
 namespace MP_POO_FINAL.GameScripts;
 
@@ -17,7 +18,8 @@ public class StartRollEvent
     
     public event Action OnStartRollEnd;
     public event Action OnPlayerWins;
-    public event Action OnIAWins;
+    public event Action OnAi1Wins;
+    public event Action OnAi2Wins;
 
 
     public async Task StartDiceRoll()
@@ -59,9 +61,13 @@ public class StartRollEvent
         {
             OnPlayerWins?.Invoke();
         }
+        else if (throwers[StarterIndex] == "Ai1Turn")
+        {
+            OnAi1Wins?.Invoke();
+        }
         else
         {
-            OnIAWins?.Invoke();
+            OnAi2Wins?.Invoke();
         }
     }
 }

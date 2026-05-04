@@ -3,7 +3,7 @@ using Raylib_cs;
 
 namespace MP_POO_FINAL.GameScripts.GameWindow;
 
-public class StartRoll
+public class StartRollUI
 {
     public void RollStart(Texture2D diceIcone)
     {

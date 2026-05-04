@@ -18,10 +18,10 @@ public class GameScreen : IScreen
 
     public void Update(MouseTracker mouse, ButtonsLogic buttonLogic)
     {
-        switch (GameManagers.Instance.Phase)
+        switch (EventManager.Instance.Phase)
         {
             case GamePhase.RollToStart:
-                buttonLogic.StartDiceRollButton(gameUi.startDiceRollButton, mouse, GameManagers.Instance.GameEvents);
+                buttonLogic.StartDiceRollButton(gameUi.startDiceRollButton, mouse, EventManager.Instance.GameEvents);
                 break;
             case GamePhase.Playing:
                 buttonLogic.DiceButton(gameUi.diceButton, mouse);
