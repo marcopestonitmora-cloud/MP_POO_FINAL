@@ -27,18 +27,18 @@ public class WhoWinsTheRollUi
             }
         }
     
-        string winnerText = $"Empieza {GameEvents.startRollEvent.Throwers[GameEvents.startRollEvent.StarterIndex]}";
+        string winnerText = $"{GameEvents.startRollEvent.Throwers[GameEvents.startRollEvent.StarterIndex]} starts";
         int winnerWidth = Raylib.MeasureText(winnerText, 135);
 
         if (GameEvents.startRollEvent.Throwers[GameEvents.startRollEvent.StarterIndex] == "Player")
         {
-            Raylib.DrawRectangle(475, 505, winnerWidth + 10, 140, Color.Black);
-            Raylib.DrawText(winnerText, 480, 510, 135, _player);   
+            Raylib.DrawRectangle(505, 505, winnerWidth + 10, 140, Color.Black);
+            Raylib.DrawText(winnerText, 510, 510, 135, _player);   
         }
         else
         {
-            Raylib.DrawRectangle(605, 505, winnerWidth + 10, 140, Color.Black);
-            Raylib.DrawText(winnerText, 610, 510, 135, _ai);   
+            Raylib.DrawRectangle(645, 505, winnerWidth + 10, 140, Color.Black);
+            Raylib.DrawText(winnerText, 650, 510, 135, _ai);   
         }
     }
 }

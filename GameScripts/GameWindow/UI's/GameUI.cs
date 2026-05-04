@@ -10,13 +10,10 @@ namespace MP_POO_FINAL.GameScripts.GameWindow;
 public class GameUI
 {
     DrawInvicoins drawInvicoins =  new DrawInvicoins(100);
-    private StartRoll startRoll = new StartRoll();
-    private PlayerTurnUI playerUI = new PlayerTurnUI();
-    private WhoWinsTheRollUi rollWinnerUI = new WhoWinsTheRollUi();
     
     private Texture2D board;
     private Texture2D background;
-    private Texture2D diceIcone;
+    public Texture2D diceIcone;
     private Texture2D playerIcone;
     private Texture2D Ai1Icone;
     private Texture2D Ai2Icone;
@@ -41,7 +38,7 @@ public class GameUI
         diceIcone = Raylib.LoadTexture("Sprites/DiceIcone.png");
     }
 
-    private void DrawEssentials()
+    public void DrawEssentials()
     {
         Raylib.ClearBackground(Color.White);
         Raylib.DrawTextureEx(background, new Vector2(0,0), 0f, 1.3f, Color.White);
@@ -54,36 +51,6 @@ public class GameUI
         drawInvicoins.Draw(120,80);
         drawInvicoins.Draw(120,240);
         drawInvicoins.Draw(120,400);
-    }
-
-    public void SceneChange()
-    {
-        switch (GameManagers.Instance.Phase)
-        {
-            case GamePhase.RollToStart:
-            {
-                DrawEssentials();
-                startRoll.RollStart(diceIcone);
-                break;
-            }
-            case GamePhase.WhoWinsTheRoll:
-            {
-                DrawEssentials();
-                rollWinnerUI.DrawRollWinner();
-                break;
-            }
-            case GamePhase.Playing:
-            {
-                DrawEssentials();
-                playerUI.DrawPlayerUI();
-                break;
-            }
-            case GamePhase.AiTurn:
-            {
-                DrawEssentials();
-                break;
-            }
-        }
     }
 }
 

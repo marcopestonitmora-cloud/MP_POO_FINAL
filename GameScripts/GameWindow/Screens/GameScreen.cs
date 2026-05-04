@@ -7,6 +7,12 @@ namespace MP_POO_FINAL.GameScripts.GameWindow;
 public class GameScreen : IScreen
 {   
     GameUI gameUi = new GameUI();
+    private PhaseLogic phaseLogic;
+    
+    public GameScreen()
+    {
+        phaseLogic = new PhaseLogic(gameUi);
+    }
     
     public void LoadAssets() =>  gameUi.LoadAssets();
 
@@ -24,7 +30,7 @@ public class GameScreen : IScreen
         }
     }
 
-    public void Draw() => gameUi.SceneChange();
+    public void Draw() => phaseLogic.SceneChange();
 }
 
 

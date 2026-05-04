@@ -53,7 +53,7 @@ public class StartRollEvent
 
     public async Task WhoWinsTheRoll()
     {
-        await Task.Delay(5000);
+        await Task.Delay(3000);
 
         if (throwers[StarterIndex] == "Player")
         {
