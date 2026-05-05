@@ -3,7 +3,7 @@
 public class Board
 {
     private readonly BoardCell[] _cells;
-    public int CellCounter => _cells.Length;
+    private int CellCounter => _cells.Length;
 
     public Board(BoardCell[] cells)
     {

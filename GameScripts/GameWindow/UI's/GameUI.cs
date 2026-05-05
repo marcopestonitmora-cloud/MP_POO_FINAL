@@ -9,7 +9,7 @@ namespace MP_POO_FINAL.GameScripts.GameWindow;
 
 public class GameUI
 {
-    DrawInvicoins drawInvicoins =  new DrawInvicoins(100);
+    DrawInvicoins drawInvicoins =  new DrawInvicoins(326);
     
     private Texture2D board;
     private Texture2D background;
@@ -18,6 +18,10 @@ public class GameUI
     private Texture2D Ai1Icone;
     private Texture2D Ai2Icone;
     private Texture2D cardIcone;
+
+    private Texture2D playerToken;
+    private Texture2D Ai1Token;
+    private Texture2D Ai2Token;
 
     public Button diceButton = new Button(116, 1010, 200, 50);
     public Button inventoryButton = new Button(1600, 1010, 200, 50);
@@ -36,6 +40,8 @@ public class GameUI
         
         cardIcone = Raylib.LoadTexture("Sprites/CardIcone.png");
         diceIcone = Raylib.LoadTexture("Sprites/DiceIcone.png");
+        
+        playerToken = Raylib.LoadTexture("Sprites/playerToken.png");
     }
 
     public void DrawEssentials()
@@ -47,6 +53,8 @@ public class GameUI
         Raylib.DrawTextureEx(playerIcone, new Vector2(-30, 0), 0, 0.2f, Color.White);
         Raylib.DrawTextureEx(Ai1Icone, new Vector2(-30, 160), 0, 0.2f, Color.White);
         Raylib.DrawTextureEx(Ai2Icone, new Vector2(-30, 320), 0, 0.2f, Color.White);
+        
+        Raylib.DrawTextureEx(playerToken, new Vector2(50,500), 0, 0.2f, Color.White); //Cambiar new vector por player.ScrennPosition
         
         drawInvicoins.Draw(120,80);
         drawInvicoins.Draw(120,240);
