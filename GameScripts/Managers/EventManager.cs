@@ -4,8 +4,8 @@ namespace MP_POO_FINAL.GameScripts.Managers;
 
 public class EventManager
 {
-    private static readonly EventManager _instance = new EventManager(); 
-    public static EventManager Instance => _instance;
+    private static readonly EventManager instance = new EventManager(); 
+    public static EventManager Instance => instance;
     public GameEvents GameEvents { get; } = new GameEvents(); 
     public GamePhase Phase { get; set; } = GamePhase.RollToStart;
     
