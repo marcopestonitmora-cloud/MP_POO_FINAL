@@ -1,15 +1,13 @@
 ﻿using System.Numerics;
-
 using MP_POO_FINAL.GameScripts.GameWindow.Buttons;
-using MP_POO_FINAL.GameScripts.GameWindow.UI_s;
-using MP_POO_FINAL.GameScripts.Managers;
+using MP_POO_FINAL.GameScripts.GameWindow.Invicoins;
 using Raylib_cs;
 
-namespace MP_POO_FINAL.GameScripts.GameWindow;
+namespace MP_POO_FINAL.GameScripts.GameWindow.UI_s;
 
 public class GameUI
 {
-    DrawInvicoins drawInvicoins =  new DrawInvicoins(326);
+    DrawInvicoins drawInvicoins =  new DrawInvicoins(325);
     
     private Texture2D board;
     private Texture2D background;
@@ -54,7 +52,7 @@ public class GameUI
         Raylib.DrawTextureEx(Ai1Icone, new Vector2(-30, 160), 0, 0.2f, Color.White);
         Raylib.DrawTextureEx(Ai2Icone, new Vector2(-30, 320), 0, 0.2f, Color.White);
         
-        Raylib.DrawTextureEx(playerToken, new Vector2(50,500), 0, 0.2f, Color.White); //Cambiar new vector por player.ScrennPosition
+        Raylib.DrawTextureEx(playerToken, new Vector2(1260f,960f), 0, 0.15f, Color.White); //Cambiar new vector por player.ScrennPosition
         
         drawInvicoins.Draw(120,80);
         drawInvicoins.Draw(120,240);
@@ -66,5 +64,5 @@ public class GameUI
 //Posiciones tablero
 //1. (455,1050) r: -90;
 //2. (1500,1050) r:-180;
-//3. (1500,30) r:-270
-//4. (455,30) r: 0
+//3. (1500,30) r:-270;
+//4. (455,30) r: 0;

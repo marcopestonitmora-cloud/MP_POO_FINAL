@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace MP_POO_FINAL;
+namespace MP_POO_FINAL.GameScripts.GameWindow.Board;
 
 public enum OwnerType { None, Player, Ai1, Ai2 }
 

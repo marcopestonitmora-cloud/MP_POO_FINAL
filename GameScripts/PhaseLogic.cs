@@ -12,8 +12,9 @@ public class PhaseLogic
     private AiTurnUi aiTurnUI = new AiTurnUi();
     private WhoWinsTheRollUi rollWinnerUI = new WhoWinsTheRollUi();
     private GameUI gameUI;
+    private GamePhase lastPhase =  GamePhase.RollToStart;
     
-    private bool aiTurnStarted = false;
+    public bool aiTurnStarted = false;
 
     public PhaseLogic(GameUI gameUi)
     {
@@ -22,6 +23,12 @@ public class PhaseLogic
 
     public void SceneChange()
     {
+        if (EventManager.Instance.Phase != lastPhase)
+        {
+            aiTurnStarted = false;
+            lastPhase = EventManager.Instance.Phase;
+        }
+
         switch (EventManager.Instance.Phase)
         {
             case GamePhase.RollToStart:

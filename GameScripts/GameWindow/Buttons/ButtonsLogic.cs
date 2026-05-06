@@ -1,4 +1,5 @@
-﻿using MP_POO_FINAL.GameScripts.Managers;
+﻿using MP_POO_FINAL.GameScripts.GameWindow.Dice;
+using MP_POO_FINAL.GameScripts.Managers;
 
 namespace MP_POO_FINAL.GameScripts.GameWindow.Buttons;
 
@@ -21,7 +22,7 @@ public class ButtonsLogic
     {
         inventoryButton.Update(mouse);
 
-        if (inventoryButton.IsClicked()) //Añadir && Tu turno, que solo puedas pulsarlo si es tu turno
+        if (inventoryButton.IsClicked())
         {
             Console.WriteLine("PUTA vigo!");
         }
@@ -33,7 +34,7 @@ public class ButtonsLogic
         return playButton.IsClicked();
     }
 
-    public async void StartDiceRollButton(Button button, MouseTracker mouse, GameEvents gameEvents)
+    public async void StartDiceRollButton(Button button, MouseTracker mouse, GameEvents.GameEvents gameEvents)
     {
         button.Update(mouse);
         if (button.IsClicked())

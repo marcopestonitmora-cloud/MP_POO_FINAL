@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using Raylib_cs;
 
-namespace MP_POO_FINAL.GameScripts;
+namespace MP_POO_FINAL.GameScripts.GameWindow.Invicoins;
 
 public class DrawInvicoins(int amount) : Invicoins(amount)
 {

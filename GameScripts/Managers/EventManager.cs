@@ -6,10 +6,11 @@ public class EventManager
 {
     private static readonly EventManager instance = new EventManager(); 
     public static EventManager Instance => instance;
-    public GameEvents GameEvents { get; } = new GameEvents(); 
+    public GameEvents.GameEvents GameEvents { get; } = new GameEvents.GameEvents(); 
     public GamePhase Phase { get; set; } = GamePhase.RollToStart;
     
     public int CurrentTurn { get; set; } = 0; // 0 = Player, 1 = Ai1, 2 = Ai2
+    
 
     private EventManager()
     {
@@ -36,7 +37,16 @@ public class EventManager
             Phase = GamePhase.Ai2Turn;
         };
         
-        GameEvents.aiEvents.OnNextAi2Turn += () => Phase = GamePhase.Ai2Turn;
-        GameEvents.aiEvents.OnNextPlayerTurn += () => Phase = GamePhase.Playing;
+        GameEvents.aiEvents.OnNextAi2Turn += () =>
+        {
+            CurrentTurn = 1; 
+            Phase = GamePhase.Ai2Turn;
+        };
+
+        GameEvents.aiEvents.OnNextPlayerTurn += () =>
+        {
+            CurrentTurn = 2; 
+            Phase = GamePhase.Playing;
+        };
     }
 }

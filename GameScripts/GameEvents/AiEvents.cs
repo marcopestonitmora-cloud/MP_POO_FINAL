@@ -1,7 +1,6 @@
-﻿using System.Diagnostics;
-using MP_POO_FINAL.GameScripts.Managers;
+﻿using MP_POO_FINAL.GameScripts.Managers;
 
-namespace MP_POO_FINAL.GameScripts.GameWindow.AI;
+namespace MP_POO_FINAL.GameScripts.GameEvents;
 
 public class AiEvents
 {

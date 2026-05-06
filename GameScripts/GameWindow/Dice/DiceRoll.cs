@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace MP_POO_FINAL.GameScripts;
+﻿namespace MP_POO_FINAL.GameScripts.GameWindow.Dice;
 
 public class DiceRoll
 {

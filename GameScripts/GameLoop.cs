@@ -1,6 +1,4 @@
-﻿using MP_POO_FINAL.GameScripts.GameWindow;
-
-namespace MP_POO_FINAL;
+﻿namespace MP_POO_FINAL.GameScripts;
 
 public class GameLoop
 {
@@ -8,7 +6,7 @@ public class GameLoop
     
     public void Loop()
     {
-        GameWindow gameWindow = new GameWindow();
+        GameWindow.GameWindow gameWindow = new GameWindow.GameWindow();
         gameWindow.Run();
     }
 }

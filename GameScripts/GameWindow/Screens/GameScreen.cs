@@ -1,8 +1,8 @@
 ﻿using MP_POO_FINAL.GameScripts.GameWindow.Buttons;
+using MP_POO_FINAL.GameScripts.GameWindow.UI_s;
 using MP_POO_FINAL.GameScripts.Managers;
-using Raylib_cs;
 
-namespace MP_POO_FINAL.GameScripts.GameWindow;
+namespace MP_POO_FINAL.GameScripts.GameWindow.Screens;
 
 public class GameScreen : IScreen
 {   

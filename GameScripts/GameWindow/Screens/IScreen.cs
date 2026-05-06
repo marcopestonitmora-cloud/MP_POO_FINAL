@@ -1,7 +1,6 @@
 ﻿using MP_POO_FINAL.GameScripts.GameWindow.Buttons;
-using SFML.Window;
 
-namespace MP_POO_FINAL.GameScripts.GameWindow;
+namespace MP_POO_FINAL.GameScripts.GameWindow.Screens;
 
 public enum GameState {Start,InGame}
 

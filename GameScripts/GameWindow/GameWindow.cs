@@ -1,4 +1,5 @@
 ﻿using MP_POO_FINAL.GameScripts.GameWindow.Buttons;
+using MP_POO_FINAL.GameScripts.GameWindow.Screens;
 using Raylib_cs;
 
 namespace MP_POO_FINAL.GameScripts.GameWindow;
@@ -13,7 +14,7 @@ public class GameWindow
     private StartScreen startScreen = new StartScreen();
     private GameScreen gameScreen = new GameScreen();
     
-    private GameEvents gameEvents = new GameEvents();
+    private GameEvents.GameEvents gameEvents = new GameEvents.GameEvents();
 
     public void Run()
     {

@@ -1,7 +1,6 @@
-﻿using MP_POO_FINAL.GameScripts.Managers;
-using Raylib_cs;
+﻿using MP_POO_FINAL.GameScripts.GameWindow.Dice;
 
-namespace MP_POO_FINAL.GameScripts;
+namespace MP_POO_FINAL.GameScripts.GameEvents;
 
 public class StartRollEvent
 {
@@ -61,11 +60,11 @@ public class StartRollEvent
         {
             OnPlayerWins?.Invoke();
         }
-        else if (throwers[StarterIndex] == "Ai1Turn")
+        else if (throwers[StarterIndex] == "Ai1")
         {
             OnAi1Wins?.Invoke();
         }
-        else
+        else if (throwers[StarterIndex] == "Ai2")
         {
             OnAi2Wins?.Invoke();
         }

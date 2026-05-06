@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace MP_POO_FINAL;
+namespace MP_POO_FINAL.GameScripts.GameWindow.Board;
 
 public class MonsterCell: BoardCell
 {
