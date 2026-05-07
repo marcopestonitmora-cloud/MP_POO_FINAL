@@ -1,7 +1,9 @@
-﻿using MP_POO_FINAL.GameScripts.GameWindow.Buttons;
-using MP_POO_FINAL.GameScripts.GameWindow.UI_s;
+﻿using MP_POO_FINAL.GameWindow.BoardInfo;
+using MP_POO_FINAL.GameWindow.Buttons;
+using MP_POO_FINAL.GameWindow.Characters;
+using MP_POO_FINAL.GameWindow.UI_s;
 
-namespace MP_POO_FINAL.GameScripts.GameWindow.Screens;
+namespace MP_POO_FINAL.GameWindow.Screens;
 
 public class StartScreen : IScreen
 {
@@ -10,9 +12,7 @@ public class StartScreen : IScreen
     
 
     public void LoadAssets() => startUi.LoadAssets();
-
-
-    public void Update(MouseTracker mouse, ButtonsLogic buttonLogic)
+    public void Update(MouseTracker mouse, ButtonsLogic buttonLogic, Character characters, Board board)
     {
         if (buttonLogic.PlayButton(startUi.playButton, mouse))
         {

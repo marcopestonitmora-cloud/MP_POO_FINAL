@@ -1,4 +1,4 @@
-﻿namespace MP_POO_FINAL.GameScripts.GameWindow.Invicoins;
+﻿namespace MP_POO_FINAL.GameWindow.Invicoins;
 
 public class Invicoins
 {

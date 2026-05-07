@@ -1,12 +1,14 @@
-﻿using MP_POO_FINAL.GameScripts.GameWindow.Buttons;
-using MP_POO_FINAL.GameScripts.GameWindow.UI_s;
-using MP_POO_FINAL.GameScripts.Managers;
+﻿using MP_POO_FINAL.GameWindow.BoardInfo;
+using MP_POO_FINAL.GameWindow.Buttons;
+using MP_POO_FINAL.GameWindow.Characters;
+using MP_POO_FINAL.Managers;
+using MP_POO_FINAL.GameWindow.UI_s;
 
-namespace MP_POO_FINAL.GameScripts.GameWindow.Screens;
+namespace MP_POO_FINAL.GameWindow.Screens;
 
 public class GameScreen : IScreen
 {   
-    GameUI gameUi = new GameUI();
+    GameUi gameUi = new GameUi();
     private PhaseLogic phaseLogic;
     
     public GameScreen()
@@ -16,7 +18,7 @@ public class GameScreen : IScreen
     
     public void LoadAssets() =>  gameUi.LoadAssets();
 
-    public void Update(MouseTracker mouse, ButtonsLogic buttonLogic)
+    public void Update(MouseTracker mouse, ButtonsLogic buttonLogic, Character character, Board board)
     {
         switch (EventManager.Instance.Phase)
         {
@@ -24,7 +26,7 @@ public class GameScreen : IScreen
                 buttonLogic.StartDiceRollButton(gameUi.startDiceRollButton, mouse, EventManager.Instance.GameEvents);
                 break;
             case GamePhase.Playing:
-                buttonLogic.DiceButton(gameUi.diceButton, mouse);
+                buttonLogic.DiceButton(gameUi.diceButton, mouse, character, board);
                 buttonLogic.InventoryButton(gameUi.inventoryButton, mouse);
                 break;
         }

@@ -1,4 +1,4 @@
-﻿namespace MP_POO_FINAL.GameScripts;
+﻿namespace MP_POO_FINAL;
 
 class Program
 {

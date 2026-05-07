@@ -1,4 +1,4 @@
-﻿namespace MP_POO_FINAL.GameScripts.GameWindow.Cards;
+﻿namespace MP_POO_FINAL.GameWindow.Cards;
 
 public struct CardInfo
 {

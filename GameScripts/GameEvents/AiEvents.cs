@@ -1,6 +1,6 @@
-﻿using MP_POO_FINAL.GameScripts.Managers;
+﻿using MP_POO_FINAL.Managers;
 
-namespace MP_POO_FINAL.GameScripts.GameEvents;
+namespace MP_POO_FINAL.GameEvents;
 
 public class AiEvents
 {

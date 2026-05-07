@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using Raylib_cs;
 
-namespace MP_POO_FINAL.GameScripts.GameWindow.UI_s;
+namespace MP_POO_FINAL.GameWindow.UI_s;
 
 public class StartRollUI
 {

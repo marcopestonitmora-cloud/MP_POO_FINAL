@@ -1,4 +1,4 @@
-﻿namespace MP_POO_FINAL.GameScripts.GameWindow.Buttons;
+﻿namespace MP_POO_FINAL.GameWindow.Buttons;
 
 public class Button(int x, int y, int width, int height)
 {

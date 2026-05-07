@@ -1,8 +1,7 @@
-﻿using MP_POO_FINAL.GameScripts.GameWindow;
-using MP_POO_FINAL.GameScripts.GameWindow.UI_s;
-using MP_POO_FINAL.GameScripts.Managers;
+﻿using MP_POO_FINAL.GameWindow.UI_s;
+using MP_POO_FINAL.Managers;
 
-namespace MP_POO_FINAL.GameScripts;
+namespace MP_POO_FINAL;
 
 public class PhaseLogic
 {
@@ -11,12 +10,12 @@ public class PhaseLogic
     private PlayerTurnUI playerUI = new PlayerTurnUI();
     private AiTurnUi aiTurnUI = new AiTurnUi();
     private WhoWinsTheRollUi rollWinnerUI = new WhoWinsTheRollUi();
-    private GameUI gameUI;
+    private GameUi gameUI;
     private GamePhase lastPhase =  GamePhase.RollToStart;
     
     public bool aiTurnStarted = false;
 
-    public PhaseLogic(GameUI gameUi)
+    public PhaseLogic(GameUi gameUi)
     {
         this.gameUI = gameUi;
     }

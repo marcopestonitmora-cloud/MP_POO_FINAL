@@ -1,19 +1,21 @@
 ﻿using MP_POO_FINAL.GameScripts.GameWindow.Dice;
-using MP_POO_FINAL.GameScripts.Managers;
+using MP_POO_FINAL.GameWindow.BoardInfo;
+using MP_POO_FINAL.GameWindow.Characters;
 
-namespace MP_POO_FINAL.GameScripts.GameWindow.Buttons;
+namespace MP_POO_FINAL.GameWindow.Buttons;
 
 public class ButtonsLogic
 {
-    DiceRoll diceRoll =  new DiceRoll();
+    readonly DiceRoll diceRoll =  new DiceRoll();
     
-    public void DiceButton(Button playButton, MouseTracker mouse)
+    public void DiceButton(Button playButton, MouseTracker mouse, Character player, Board board)
     {
         playButton.Update(mouse);
 
         if (playButton.IsClicked())
         {
-            diceRoll.RollTheDice();
+            int steps = diceRoll.RollTheDice();
+            player.Move(steps, board);
             Console.WriteLine("Boton presionado!");
         }
     }
@@ -34,7 +36,7 @@ public class ButtonsLogic
         return playButton.IsClicked();
     }
 
-    public async void StartDiceRollButton(Button button, MouseTracker mouse, GameEvents.GameEvents gameEvents)
+    public async void StartDiceRollButton(Button button, MouseTracker mouse, MP_POO_FINAL.GameEvents.GameEvents gameEvents)
     {
         button.Update(mouse);
         if (button.IsClicked())

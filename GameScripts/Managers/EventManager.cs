@@ -1,6 +1,4 @@
-﻿using MP_POO_FINAL.GameScripts.GameWindow;
-
-namespace MP_POO_FINAL.GameScripts.Managers;
+﻿namespace MP_POO_FINAL.Managers;
 
 public class EventManager
 {

@@ -1,4 +1,4 @@
-﻿namespace MP_POO_FINAL.GameScripts.GameEvents;
+﻿namespace MP_POO_FINAL.GameEvents;
 
 public class GameEvents
 {

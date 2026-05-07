@@ -1,13 +1,19 @@
-﻿using MP_POO_FINAL.GameScripts.GameWindow.Buttons;
-using MP_POO_FINAL.GameScripts.GameWindow.Screens;
+﻿using MP_POO_FINAL.GameWindow.BoardInfo;
+using MP_POO_FINAL.GameWindow.Buttons;
+using MP_POO_FINAL.GameWindow.Characters;
+using MP_POO_FINAL.GameWindow.Screens;
 using Raylib_cs;
 
-namespace MP_POO_FINAL.GameScripts.GameWindow;
+namespace MP_POO_FINAL.GameWindow;
 
 public class GameWindow
 {
     private MouseTracker mouse = new MouseTracker();
     private ButtonsLogic buttonLogic = new ButtonsLogic();
+    private Player player = new Player(500,OwnerType.Player);
+    public AI ai1 = new AI(500, OwnerType.Ai1);
+    public AI ai2 = new AI(500, OwnerType.Ai2);
+    private Board board = BoardFactory.CreateBoard();
     
     private IScreen currentScreen;
     
@@ -28,7 +34,7 @@ public class GameWindow
         while (!Raylib.WindowShouldClose())
         {
             mouse.MouseTrack();
-            currentScreen.Update(mouse, buttonLogic);
+            currentScreen.Update(mouse, buttonLogic, player, board);
 
             if (startScreen.NextState == GameState.InGame)
             {

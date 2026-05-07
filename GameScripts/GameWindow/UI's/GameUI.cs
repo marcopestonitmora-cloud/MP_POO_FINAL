@@ -1,11 +1,11 @@
 ﻿using System.Numerics;
-using MP_POO_FINAL.GameScripts.GameWindow.Buttons;
-using MP_POO_FINAL.GameScripts.GameWindow.Invicoins;
+using MP_POO_FINAL.GameWindow.Buttons;
+using MP_POO_FINAL.GameWindow.Invicoins;
 using Raylib_cs;
 
-namespace MP_POO_FINAL.GameScripts.GameWindow.UI_s;
+namespace MP_POO_FINAL.GameWindow.UI_s;
 
-public class GameUI
+public class GameUi
 {
     DrawInvicoins drawInvicoins =  new DrawInvicoins(325);
     
@@ -13,13 +13,13 @@ public class GameUI
     private Texture2D background;
     public Texture2D diceIcone;
     private Texture2D playerIcone;
-    private Texture2D Ai1Icone;
-    private Texture2D Ai2Icone;
+    private Texture2D ai1Icone;
+    private Texture2D ai2Icone;
     private Texture2D cardIcone;
 
     private Texture2D playerToken;
-    private Texture2D Ai1Token;
-    private Texture2D Ai2Token;
+    private Texture2D _ai1Token;
+    private Texture2D _ai2Token;
 
     public Button diceButton = new Button(116, 1010, 200, 50);
     public Button inventoryButton = new Button(1600, 1010, 200, 50);
@@ -31,8 +31,8 @@ public class GameUI
         background = Raylib.LoadTexture("Sprites/casino_background.png");
         
         playerIcone = Raylib.LoadTexture("Sprites/player.png");
-        Ai1Icone = Raylib.LoadTexture("Sprites/Ai1.png");
-        Ai2Icone = Raylib.LoadTexture("Sprites/Ai2.png");
+        ai1Icone = Raylib.LoadTexture("Sprites/Ai1.png");
+        ai2Icone = Raylib.LoadTexture("Sprites/Ai2.png");
         
         drawInvicoins.LoadNumbers();
         
@@ -49,8 +49,8 @@ public class GameUI
         Raylib.DrawTextureEx(board, new Vector2(480,1050), -90, 4f, Color.White);
         
         Raylib.DrawTextureEx(playerIcone, new Vector2(-30, 0), 0, 0.2f, Color.White);
-        Raylib.DrawTextureEx(Ai1Icone, new Vector2(-30, 160), 0, 0.2f, Color.White);
-        Raylib.DrawTextureEx(Ai2Icone, new Vector2(-30, 320), 0, 0.2f, Color.White);
+        Raylib.DrawTextureEx(ai1Icone, new Vector2(-30, 160), 0, 0.2f, Color.White);
+        Raylib.DrawTextureEx(ai2Icone, new Vector2(-30, 320), 0, 0.2f, Color.White);
         
         Raylib.DrawTextureEx(playerToken, new Vector2(1260f,960f), 0, 0.15f, Color.White); //Cambiar new vector por player.ScrennPosition
         

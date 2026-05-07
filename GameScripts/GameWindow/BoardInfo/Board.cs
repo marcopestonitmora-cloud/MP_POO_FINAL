@@ -1,9 +1,9 @@
-﻿namespace MP_POO_FINAL.GameScripts.GameWindow.Board;
+﻿namespace MP_POO_FINAL.GameWindow.BoardInfo;
 
 public class Board
 {
     private readonly BoardCell[] _cells;
-    private int CellCounter => _cells.Length;
+    public int CellCounter => _cells.Length;
 
     public Board(BoardCell[] cells)
     {
