@@ -13,6 +13,6 @@ public class StartCell: BoardCell
     
     public override void OnLand(OwnerType currentPlayer)
     {
-        throw new NotImplementedException();
+        Console.WriteLine("StartCell");
     }
 }

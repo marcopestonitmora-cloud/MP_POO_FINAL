@@ -8,6 +8,6 @@ public class DoorCell: BoardCell
     
     public override void OnLand(OwnerType currentPlayer)
     {
-        throw new NotImplementedException();
+        Console.WriteLine("DoorCell");
     }
 }

@@ -8,6 +8,6 @@ public class NachoCell: BoardCell
     
     public override void OnLand(OwnerType currentPlayer)
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Nacho Cell");
     }
 }

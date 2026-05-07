@@ -8,6 +8,6 @@ public class JhonCell: BoardCell
     
     public override void OnLand(OwnerType currentPlayer)
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Jhon Cell");
     }
 }

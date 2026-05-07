@@ -1,4 +1,4 @@
-﻿namespace MP_POO_FINAL.GameScripts.GameWindow.Dice;
+﻿namespace MP_POO_FINAL.GameWindow.Dice;
 
 public class DiceRoll
 {

@@ -1,5 +1,7 @@
 ﻿using System.Numerics;
+using MP_POO_FINAL.GameWindow.BoardInfo;
 using MP_POO_FINAL.GameWindow.Buttons;
+using MP_POO_FINAL.GameWindow.Characters;
 using MP_POO_FINAL.GameWindow.Invicoins;
 using Raylib_cs;
 
@@ -7,7 +9,16 @@ namespace MP_POO_FINAL.GameWindow.UI_s;
 
 public class GameUi
 {
-    DrawInvicoins drawInvicoins =  new DrawInvicoins(325);
+    private Player player;
+    private AI ai1;
+    private AI ai2;
+
+    public GameUi(Player player, AI ai1, AI ai2)
+    {
+        this.player = player;
+        this.ai1    = ai1;
+        this.ai2    = ai2;
+    }
     
     private Texture2D board;
     private Texture2D background;
@@ -34,8 +45,6 @@ public class GameUi
         ai1Icone = Raylib.LoadTexture("Sprites/Ai1.png");
         ai2Icone = Raylib.LoadTexture("Sprites/Ai2.png");
         
-        drawInvicoins.LoadNumbers();
-        
         cardIcone = Raylib.LoadTexture("Sprites/CardIcone.png");
         diceIcone = Raylib.LoadTexture("Sprites/DiceIcone.png");
         
@@ -52,11 +61,11 @@ public class GameUi
         Raylib.DrawTextureEx(ai1Icone, new Vector2(-30, 160), 0, 0.2f, Color.White);
         Raylib.DrawTextureEx(ai2Icone, new Vector2(-30, 320), 0, 0.2f, Color.White);
         
-        Raylib.DrawTextureEx(playerToken, new Vector2(1260f,960f), 0, 0.15f, Color.White); //Cambiar new vector por player.ScrennPosition
+        Raylib.DrawTextureEx(playerToken, new Vector2(player.ScreenPosition.X,player.ScreenPosition.Y), 0, 0.15f, Color.White);
         
-        drawInvicoins.Draw(120,80);
-        drawInvicoins.Draw(120,240);
-        drawInvicoins.Draw(120,400);
+        player.Coins.Draw(120,80);
+        ai1.Coins.Draw(120,240);
+        ai2.Coins.Draw(120,400);
     }
 }
 

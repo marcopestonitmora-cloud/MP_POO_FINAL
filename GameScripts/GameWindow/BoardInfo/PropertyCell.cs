@@ -26,6 +26,6 @@ public class PropertyCell: BoardCell
 
     public override void OnLand(OwnerType currentPlayer)
     {
-        throw new NotImplementedException();
+       
     }
 }

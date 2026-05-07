@@ -10,24 +10,34 @@ public class GameWindow
 {
     private MouseTracker mouse = new MouseTracker();
     private ButtonsLogic buttonLogic = new ButtonsLogic();
-    private Player player = new Player(500,OwnerType.Player);
-    public AI ai1 = new AI(500, OwnerType.Ai1);
-    public AI ai2 = new AI(500, OwnerType.Ai2);
-    private Board board = BoardFactory.CreateBoard();
+    private Board board;
+    private Player player;
+    private AI ai1;
+    private AI ai2;
     
     private IScreen currentScreen;
     
     private StartScreen startScreen = new StartScreen();
-    private GameScreen gameScreen = new GameScreen();
-    
-    private GameEvents.GameEvents gameEvents = new GameEvents.GameEvents();
+    private GameScreen gameScreen;
 
     public void Run()
     {
+        board  = BoardFactory.CreateBoard();
+        player = new Player(500,OwnerType.Player);
+        ai1 = new AI(500,OwnerType.Ai1);
+        ai2 = new AI(500, OwnerType.Ai2);
+        gameScreen =  new GameScreen(player,ai1,ai2);
+        
         Raylib.InitWindow(1920, 1080, "Monopoly");
+        
+        player.Coins.LoadNumbers();
+        ai1.Coins.LoadNumbers();
+        ai2.Coins.LoadNumbers();
         
         startScreen.LoadAssets();
         gameScreen.LoadAssets();
+        
+        player.Move(0, board); 
         
         currentScreen = startScreen;
 

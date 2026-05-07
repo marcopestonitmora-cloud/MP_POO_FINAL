@@ -8,6 +8,6 @@ public class LuckyCell: BoardCell
     
     public override void OnLand(OwnerType currentPlayer)
     {
-        throw new NotImplementedException();
+        Console.WriteLine("Lucky Cell");
     }
 }

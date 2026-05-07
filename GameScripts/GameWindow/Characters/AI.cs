@@ -6,7 +6,7 @@ namespace MP_POO_FINAL.GameWindow.Characters;
 
 public class AI : Character
 {
-    public AI(int invicoinsCounter,  OwnerType ownerType) : base(invicoinsCounter)
+    public AI(int invicoinsCounter, OwnerType ownerType) : base(invicoinsCounter)
     {
         OwnerType = ownerType;
     }

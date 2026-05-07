@@ -1,4 +1,4 @@
-﻿using MP_POO_FINAL.GameScripts.GameWindow.Dice;
+﻿using MP_POO_FINAL.GameWindow.Dice;
 
 namespace MP_POO_FINAL.GameEvents;
 
