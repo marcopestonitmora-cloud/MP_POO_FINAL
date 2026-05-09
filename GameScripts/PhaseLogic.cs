@@ -1,23 +1,44 @@
-﻿using MP_POO_FINAL.GameWindow.UI_s;
+﻿using MP_POO_FINAL.GameWindow.BoardInfo;
+using MP_POO_FINAL.GameWindow.Characters;
+using MP_POO_FINAL.GameWindow.Dice;
+using MP_POO_FINAL.GameWindow.UI_s;
 using MP_POO_FINAL.Managers;
 
 namespace MP_POO_FINAL;
 
 public class PhaseLogic
 {
-    private EventManager eventManager = EventManager.Instance;
-    private StartRollUI startRollUi = new StartRollUI();
-    private PlayerTurnUI playerUI = new PlayerTurnUI();
-    private AiTurnUi aiTurnUI = new AiTurnUi();
-    private WhoWinsTheRollUi rollWinnerUI = new WhoWinsTheRollUi();
-    private GameUi gameUI;
-    private GamePhase lastPhase =  GamePhase.RollToStart;
+    private DrawDice diceNumbers;
     
-    public bool aiTurnStarted = false;
+    private EventManager eventManager = EventManager.Instance;
+    
+    private WhoWinsTheRollUi rollWinnerUI = new WhoWinsTheRollUi();
+    private StartRollUI startRollUi = new StartRollUI();
+    private OnLandTurnUi onLandTurnUI = new OnLandTurnUi();
+    
+    private AiLogic aiLogic;
+    private AiTurnUi aiTurnUI;
+    private PlayerTurnUI playerUI;
+    private GameUi gameUI;
 
-    public PhaseLogic(GameUi gameUi)
+    private AI ai1;
+    private AI ai2;
+    private Board board;
+    
+    private GamePhase lastPhase =  GamePhase.RollToStart;
+
+    private bool aiTurnStarted = false;
+
+    public PhaseLogic(GameUi gameUi, DrawDice diceNumbers,AI ai1, AI ai2, Board board)
     {
-        this.gameUI = gameUi;
+        gameUI = gameUi;
+        this.diceNumbers = diceNumbers;
+        this.ai1 = ai1;
+        this.ai2 = ai2;
+        this.board = board;
+        aiTurnUI = new AiTurnUi(diceNumbers);
+        playerUI = new PlayerTurnUI(diceNumbers);
+        aiLogic = new AiLogic(ai1, ai2, board);
     }
 
     public void SceneChange()
@@ -55,7 +76,8 @@ public class PhaseLogic
                 if (!aiTurnStarted)
                 {
                     aiTurnStarted = true;
-                    Task.Run(async () => {await Task.Delay(1000); eventManager.GameEvents.aiEvents.AiTurnEnd();});
+                    _ = aiLogic.AiRoll();
+                    Task.Run(async () => {await Task.Delay(3000); eventManager.GameEvents.aiEvents.AiTurnEnd();});
                 }
                 break;
             }
@@ -66,8 +88,15 @@ public class PhaseLogic
                 if (!aiTurnStarted)
                 {
                     aiTurnStarted = true;
-                    Task.Run(async () => {await Task.Delay(1000); eventManager.GameEvents.aiEvents.AiTurnEnd();});
+                    _ = aiLogic.AiRoll();
+                    Task.Run(async () => {await Task.Delay(3000); eventManager.GameEvents.aiEvents.AiTurnEnd();});
                 }
+                break;
+            }
+            case GamePhase.OnLandTurn:
+            {
+                gameUI.DrawEssentials();
+                onLandTurnUI.DrawOnLadUi(board);
                 break;
             }
         }

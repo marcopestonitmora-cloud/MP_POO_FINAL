@@ -1,7 +1,10 @@
 ﻿using MP_POO_FINAL.GameWindow.BoardInfo;
 using MP_POO_FINAL.GameWindow.Buttons;
 using MP_POO_FINAL.GameWindow.Characters;
+using MP_POO_FINAL.GameWindow.Dice;
 using MP_POO_FINAL.GameWindow.Screens;
+using MP_POO_FINAL.GameWindow.UI_s;
+using MP_POO_FINAL.Managers;
 using Raylib_cs;
 
 namespace MP_POO_FINAL.GameWindow;
@@ -10,6 +13,9 @@ public class GameWindow
 {
     private MouseTracker mouse = new MouseTracker();
     private ButtonsLogic buttonLogic = new ButtonsLogic();
+    private DrawDice diceNumbers =  new DrawDice();
+    private AiLogic aiLogic;
+    
     private Board board;
     private Player player;
     private AI ai1;
@@ -23,28 +29,32 @@ public class GameWindow
     public void Run()
     {
         board  = BoardFactory.CreateBoard();
+        
         player = new Player(500,OwnerType.Player);
         ai1 = new AI(500,OwnerType.Ai1);
         ai2 = new AI(500, OwnerType.Ai2);
-        gameScreen =  new GameScreen(player,ai1,ai2);
+        
+        EventManager.Instance.InitCharacters(player,ai1,ai2);
+        EventManager.Instance.InitButtonsLogic(buttonLogic);
+        gameScreen =  new GameScreen(player,ai1,ai2, diceNumbers, board);
+        aiLogic= new AiLogic(ai1,ai2, board);
         
         Raylib.InitWindow(1920, 1080, "Monopoly");
         
+        diceNumbers.LoadDiceNumbers();
         player.Coins.LoadNumbers();
         ai1.Coins.LoadNumbers();
         ai2.Coins.LoadNumbers();
-        
+
         startScreen.LoadAssets();
         gameScreen.LoadAssets();
-        
-        player.Move(0, board); 
         
         currentScreen = startScreen;
 
         while (!Raylib.WindowShouldClose())
         {
             mouse.MouseTrack();
-            currentScreen.Update(mouse, buttonLogic, player, board);
+            currentScreen.Update(mouse, buttonLogic, player, ai1, ai2, board);
 
             if (startScreen.NextState == GameState.InGame)
             {

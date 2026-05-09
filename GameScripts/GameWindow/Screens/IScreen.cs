@@ -9,6 +9,6 @@ public enum GameState {Start,InGame}
 public interface IScreen
 {
     void LoadAssets();
-    void Update(MouseTracker mouse, ButtonsLogic buttonLogic, Character characters, Board board);
+    void Update(MouseTracker mouse, ButtonsLogic buttonLogic, Character player, Character ai1, Character ai2, Board board);
     void Draw();
 }

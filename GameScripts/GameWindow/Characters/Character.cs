@@ -1,29 +1,47 @@
 ﻿using System.Numerics;
 using MP_POO_FINAL.GameWindow.BoardInfo;
 using MP_POO_FINAL.GameWindow.Invicoins;
+using MP_POO_FINAL.Managers;
 
 namespace MP_POO_FINAL.GameWindow.Characters;
 
 public abstract class Character
 {
-    private int BoardPosition { get; set; } = 0;
+    public int BoardPosition { get; set; } = 0;
     public Vector2 ScreenPosition {get; private set;}
     //public Inventory<ActionCard> Cards { get; protected set; }
     public List<PropertyCell> Properties { get; protected set; }
     public bool IsBankrupt { get; protected set; } = false;
     protected abstract OwnerType OwnerType { get; }
+    private int CurrentPosition {get; set;} = 0;
     public DrawInvicoins Coins {get; set;}
 
     protected Character(int invicoinsCounter)
     {
         Coins = new DrawInvicoins(invicoinsCounter);
-        ScreenPosition = Vector2.Zero;
+        ScreenPosition = new Vector2(1370, 960);
     }
 
-    public virtual void Move (int diceNumber, Board board)
-    {
+    public virtual async Task Move (int diceNumber, Board board)
+    { 
+        CurrentPosition = (BoardPosition) % board.CellCounter;
+        
         BoardPosition = (BoardPosition + diceNumber) % board.CellCounter;
-        ScreenPosition = board.GetCellIndex(BoardPosition).ScreenPosition;
+
+        await CellJump(CurrentPosition,diceNumber,board);
+       
         board.GetCellIndex(BoardPosition).OnLand(OwnerType);
+    }
+
+    protected virtual async Task CellJump(int currentPosition, int steps, Board board)
+    {
+        for (int i = 1; i <= steps; i++)
+        {
+            int nextPosition = (currentPosition + i) % board.CellCounter;
+
+            ScreenPosition = board.GetCellIndex(nextPosition).ScreenPosition;
+
+            await Task.Delay(500);
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using MP_POO_FINAL.GameWindow.Dice;
 
-namespace MP_POO_FINAL.GameEvents;
+namespace MP_POO_FINAL.Events;
 
 public class StartRollEvent
 {

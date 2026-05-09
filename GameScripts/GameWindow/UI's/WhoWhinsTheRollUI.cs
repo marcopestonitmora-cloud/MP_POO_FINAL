@@ -1,11 +1,13 @@
-﻿using MP_POO_FINAL.Managers;
+﻿using MP_POO_FINAL.Events;
+using MP_POO_FINAL.GameScripts.Events;
+using MP_POO_FINAL.Managers;
 using Raylib_cs;
 
 namespace MP_POO_FINAL.GameWindow.UI_s;
 
 public class WhoWinsTheRollUi
 {
-    private GameEvents.GameEvents GameEvents => EventManager.Instance.GameEvents;
+    private GameEvents GameEvents => EventManager.Instance.GameEvents;
     private readonly Color _player = Color.Blue;
     private readonly Color _ai = Color.Red;
     public void DrawRollWinner()

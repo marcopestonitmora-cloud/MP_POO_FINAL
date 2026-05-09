@@ -12,7 +12,7 @@ public class StartScreen : IScreen
     
 
     public void LoadAssets() => startUi.LoadAssets();
-    public void Update(MouseTracker mouse, ButtonsLogic buttonLogic, Character characters, Board board)
+    public void Update(MouseTracker mouse, ButtonsLogic buttonLogic, Character characters, Character ai1, Character ai2,Board board)
     {
         if (buttonLogic.PlayButton(startUi.playButton, mouse))
         {
