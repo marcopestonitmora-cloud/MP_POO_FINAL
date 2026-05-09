@@ -45,7 +45,7 @@ public abstract class Character
         }
     }
 
-    public virtual void BuyCell(int cellPrice)
+    public virtual void PayCell(int cellPrice)
     {
         if (Coins.Amount < cellPrice)
         {
@@ -53,6 +53,7 @@ public abstract class Character
         }
         
         Coins.Amount -= cellPrice;
+        
         if (Coins.Amount <= 0)
         {
             IsBankrupt = true;

@@ -51,10 +51,9 @@ public class ButtonsLogic
         buyButton.Update(mouse);
         if (buyButton.IsClicked())
         {
-            //Actualiza directamente por si compras la casilla y vuelves a pulsar el boton
             property = EventManager.Instance.board.GetCellIndex(EventManager.Instance.player.BoardPosition) as PropertyCell;
 
-            if (property.Owner != OwnerType.None)
+            if (property.Owner == OwnerType.Player && property.CreditCounter >= 6)
             {
                 return;
             }
