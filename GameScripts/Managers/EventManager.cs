@@ -93,6 +93,12 @@ public class EventManager
             property = board.GetCellIndex(player.BoardPosition) as PropertyCell;
             property?.Buy(OwnerType.Player);
         };
+
+        buttonsLogic.OnSellProperty += () =>
+        {
+            property = board.GetCellIndex(player.BoardPosition) as PropertyCell;
+            property?.Sell(OwnerType.Player);
+        };
     }
 
     public Character GetCharacter(OwnerType ownerType)

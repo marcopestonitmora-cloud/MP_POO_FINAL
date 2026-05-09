@@ -10,13 +10,13 @@ public enum OwnerType { None, Player, Ai1, Ai2 }
 public class PropertyCell: BoardCell
 {
     private int Price          { get; set; }
-    private OwnerType Owner    { get; set; }
+    public OwnerType Owner    { get; set; }
     public int CreditPrice    { get; private set; }
     public int RentPrice      { get; private set; }
     
     public int SellPrice      { get; private set; }
 
-    public PropertyCell(int index, string name, Vector2 screenPosition, string color, int price, int creditPrice, int rentPrice, int sellPrice) : base(index,name, screenPosition)
+    public PropertyCell(int index, Vector2 screenPosition, int price, int creditPrice, int rentPrice, int sellPrice) : base(index, screenPosition)
     {
         Price = price;
         Owner = OwnerType.None;
@@ -44,7 +44,7 @@ public class PropertyCell: BoardCell
             {
                 Raylib.DrawTextureEx(buyIcone, new Vector2(57, 860), 0, 0.6f, Color.White);
                 Raylib.DrawText(buyText, 70, 990, 60, Color.White);
-                Raylib.DrawText(sellText, 70, 600, 60, Color.White);
+                Raylib.DrawText(sellText, 70, 760, 60, Color.White);
                 break;
             }
         }
@@ -60,5 +60,11 @@ public class PropertyCell: BoardCell
     
         Owner = buyer;
         EventManager.Instance.GetCharacter(buyer).BuyCell(Price);
+    }
+
+    public void Sell(OwnerType seller)
+    {
+        Owner = OwnerType.None;
+        EventManager.Instance.GetCharacter(seller).SellCell(SellPrice);
     }
 }

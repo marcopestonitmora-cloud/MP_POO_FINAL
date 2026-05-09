@@ -10,7 +10,7 @@ public class MonsterCell: BoardCell
     public int Price          { get; private set; }
     public int RentPrice          { get; private set; }
     
-    public MonsterCell(int index, string name, Vector2 screenPosition, int price, int rentPrice) : base(index, name, screenPosition)
+    public MonsterCell(int index,Vector2 screenPosition, int price, int rentPrice) : base(index, screenPosition)
     {
         Owner = OwnerType.None;
         Price = price;

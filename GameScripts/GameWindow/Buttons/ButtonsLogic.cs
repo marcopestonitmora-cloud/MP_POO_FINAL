@@ -10,9 +10,30 @@ namespace MP_POO_FINAL.GameWindow.Buttons;
 public class ButtonsLogic
 {
     public event Action OnPlayerTurnEnded;
+    public event Action OnSellProperty;
     public event Action OnBuyProperty;
     private OwnerType owner;
+    private PropertyCell property;
     
+    //STARTS THE GAME
+    public bool PlayButton(Button playButton, MouseTracker mouse)
+    {
+        playButton.Update(mouse);
+        return playButton.IsClicked();
+    }
+    
+    
+    //SAME AS THE ROLL DICE BUT JUST FOR THE INITIAL PART OF THE GAME
+    public async void StartDiceRollButton(Button button, MouseTracker mouse, GameEvents gameEvents)
+    {
+        button.Update(mouse);
+        if (button.IsClicked())
+        {
+            await gameEvents.startRollEvent.StartDiceRoll();
+        }
+    }
+    
+    //ROLLS THE DICE 
     public void DiceButton(Button playButton, MouseTracker mouse, Character player, Board board)
     {
         playButton.Update(mouse);
@@ -24,12 +45,16 @@ public class ButtonsLogic
         }
     }
 
+    //IF U LANDO ON A PROPERTY U CAN BUY IT IF U HAVE ENOUGH MONEY
     public void BuyButton(Button buyButton, MouseTracker mouse)
     {
         buyButton.Update(mouse);
         if (buyButton.IsClicked())
         {
-            if (owner == OwnerType.Player)
+            //Actualiza directamente por si compras la casilla y vuelves a pulsar el boton
+            property = EventManager.Instance.board.GetCellIndex(EventManager.Instance.player.BoardPosition) as PropertyCell;
+
+            if (property.Owner != OwnerType.None)
             {
                 return;
             }
@@ -38,6 +63,21 @@ public class ButtonsLogic
         }
     }
 
+    public void SellButton(Button sellButton, MouseTracker mouse)
+    {
+        sellButton.Update(mouse);
+        if (sellButton.IsClicked())
+        {
+            if (property.Owner != OwnerType.Player)
+            {
+                return;
+            }
+
+            OnSellProperty?.Invoke();
+        }
+    }
+
+    //LET THE PLAYER SEE HIS ACTION CARDS
     public void InventoryButton(Button inventoryButton, MouseTracker mouse)
     {
         inventoryButton.Update(mouse);
@@ -48,27 +88,13 @@ public class ButtonsLogic
         }
     }
 
+    //ENDS THE PLAYER ROUND
     public void EndTurnButton(Button endTurnButton, MouseTracker mouse)
     {
         endTurnButton.Update(mouse);
         if (endTurnButton.IsClicked())
         {
             OnPlayerTurnEnded?.Invoke();
-        }
-    }
-
-    public bool PlayButton(Button playButton, MouseTracker mouse)
-    {
-        playButton.Update(mouse);
-        return playButton.IsClicked();
-    }
-
-    public async void StartDiceRollButton(Button button, MouseTracker mouse, GameEvents gameEvents)
-    {
-        button.Update(mouse);
-        if (button.IsClicked())
-        {
-            await gameEvents.startRollEvent.StartDiceRoll();
         }
     }
 }

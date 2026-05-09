@@ -6,27 +6,20 @@ namespace MP_POO_FINAL.GameWindow.BoardInfo;
 public abstract class BoardCell
 {
     public int Index { get; private set; }
-    public string Name { get; private set; }
     public Vector2 ScreenPosition { get; private set; }
 
     protected Texture2D buyIcone;
     protected string buyText = "BUY";
     protected string sellText = "SELL";
 
-    protected BoardCell(int index, string name, Vector2 screenPosition)
+    protected BoardCell(int index, Vector2 screenPosition)
     {
         if (index < 0)
         {
             throw new ArgumentOutOfRangeException(nameof(index));
         }
 
-        if (string.IsNullOrWhiteSpace(name))
-        {
-            throw new ArgumentException("El nombre no puede estar vacío.", nameof(name));
-        }
-
         Index          = index;
-        Name           = name;
         ScreenPosition = screenPosition;
     }
     

@@ -49,7 +49,7 @@ public abstract class Character
     {
         if (Coins.Amount < cellPrice)
         {
-            throw new Exception("Not enough coins");
+            return;
         }
         
         Coins.Amount -= cellPrice;
@@ -57,5 +57,10 @@ public abstract class Character
         {
             IsBankrupt = true;
         }
+    }
+
+    public virtual void SellCell(int cellPrice)
+    {
+        Coins.Amount += cellPrice;
     }
 }

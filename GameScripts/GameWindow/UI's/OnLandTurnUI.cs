@@ -18,8 +18,8 @@ public class OnLandTurnUi
     private Texture2D endTurnIcone;
 
     public Button buyButton = new Button(57, 990, 200, 50);
-    public Button infoButton = new Button(1600, 1010, 200, 50);
-    public Button sellButton = new Button(1600, 1010, 200, 50);
+    public Button infoButton = new Button(57, 760, 200, 50);
+    public Button sellButton = new Button(57, 760, 200, 50);
     public Button endTurnButton = new Button(1600, 1010, 200, 50);
 
     public void DrawOnLadUi(Board board)

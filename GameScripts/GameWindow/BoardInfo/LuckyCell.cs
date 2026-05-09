@@ -4,7 +4,7 @@ namespace MP_POO_FINAL.GameWindow.BoardInfo;
 
 public class LuckyCell: BoardCell
 {
-    public LuckyCell(int index, string name, Vector2 screenPosition) : base(index, name, screenPosition) {}
+    public LuckyCell(int index, Vector2 screenPosition) : base(index, screenPosition) {}
     
     public override void OnLand(OwnerType currentPlayer)
     {

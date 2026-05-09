@@ -6,7 +6,7 @@ public class StartCell: BoardCell
 {
     public int InvicoinsPay {get; private set; }
 
-    public StartCell(int index, string name, Vector2 screenPosition, int invicoinsPay) : base(index, name, screenPosition)
+    public StartCell(int index, Vector2 screenPosition, int invicoinsPay) : base(index, screenPosition)
     {
         InvicoinsPay = invicoinsPay;
     }

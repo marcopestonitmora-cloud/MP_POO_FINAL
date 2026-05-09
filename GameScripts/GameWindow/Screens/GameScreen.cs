@@ -44,6 +44,7 @@ public class GameScreen : IScreen
             case GamePhase.OnLandTurn:
                 buttonLogic.EndTurnButton(onLandTurn.endTurnButton, mouse);
                 buttonLogic.BuyButton(onLandTurn.buyButton, mouse);
+                buttonLogic.SellButton(onLandTurn.sellButton, mouse);
                 break;
         }
     }
