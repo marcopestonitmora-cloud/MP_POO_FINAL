@@ -44,4 +44,18 @@ public abstract class Character
             await Task.Delay(500);
         }
     }
+
+    public virtual void BuyCell(int cellPrice)
+    {
+        if (Coins.Amount < cellPrice)
+        {
+            throw new Exception("Not enough coins");
+        }
+        
+        Coins.Amount -= cellPrice;
+        if (Coins.Amount <= 0)
+        {
+            IsBankrupt = true;
+        }
+    }
 }

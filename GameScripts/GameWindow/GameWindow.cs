@@ -28,18 +28,25 @@ public class GameWindow
 
     public void Run()
     {
-        board  = BoardFactory.CreateBoard();
-        
         player = new Player(500,OwnerType.Player);
         ai1 = new AI(500,OwnerType.Ai1);
         ai2 = new AI(500, OwnerType.Ai2);
         
+        board  = BoardFactory.CreateBoard();
+        
         EventManager.Instance.InitCharacters(player,ai1,ai2);
+        EventManager.Instance.InitBoard(board);
         EventManager.Instance.InitButtonsLogic(buttonLogic);
+        
         gameScreen =  new GameScreen(player,ai1,ai2, diceNumbers, board);
         aiLogic= new AiLogic(ai1,ai2, board);
         
         Raylib.InitWindow(1920, 1080, "Monopoly");
+
+        foreach (var cell in board.GetAllCells())
+        {
+            cell.LoadAssets();
+        }
         
         diceNumbers.LoadDiceNumbers();
         player.Coins.LoadNumbers();

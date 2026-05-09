@@ -10,4 +10,9 @@ public class JhonCell: BoardCell
     {
         Console.WriteLine("Jhon Cell");
     }
+
+    public override void DrawOnLandUI()
+    {
+        
+    }
 }

@@ -10,6 +10,8 @@ namespace MP_POO_FINAL.GameWindow.Buttons;
 public class ButtonsLogic
 {
     public event Action OnPlayerTurnEnded;
+    public event Action OnBuyProperty;
+    private OwnerType owner;
     
     public void DiceButton(Button playButton, MouseTracker mouse, Character player, Board board)
     {
@@ -19,6 +21,20 @@ public class ButtonsLogic
         {
             int steps = EventManager.Instance.GameEvents.diceRoll.RollTheDice();
             player.Move(steps, board);
+        }
+    }
+
+    public void BuyButton(Button buyButton, MouseTracker mouse)
+    {
+        buyButton.Update(mouse);
+        if (buyButton.IsClicked())
+        {
+            if (owner == OwnerType.Player)
+            {
+                return;
+            }
+
+            OnBuyProperty?.Invoke();
         }
     }
 

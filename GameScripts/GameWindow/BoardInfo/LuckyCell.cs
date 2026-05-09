@@ -10,4 +10,9 @@ public class LuckyCell: BoardCell
     {
         Console.WriteLine("Lucky Cell");
     }
+
+    public override void DrawOnLandUI()
+    {
+        
+    }
 }

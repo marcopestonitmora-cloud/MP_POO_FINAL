@@ -10,4 +10,9 @@ public class NachoCell: BoardCell
     {
         Console.WriteLine("Nacho Cell");
     }
+
+    public override void DrawOnLandUI()
+    {
+        
+    }
 }

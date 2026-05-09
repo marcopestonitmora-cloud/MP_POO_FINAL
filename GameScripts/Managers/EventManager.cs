@@ -14,7 +14,8 @@ public class EventManager
     public GameEvents GameEvents { get; } = new GameEvents(); 
     public GamePhase Phase { get; set; } = GamePhase.RollToStart;
     public ButtonsLogic ButtonsLogic { get; private set; }
-    public Board Board { get; private set; }
+    public Board board { get; private set; }
+    public PropertyCell property { get; private set; }
     public int CurrentTurn { get; set; } = 0; // 0 = Player, 1 = Ai1, 2 = Ai2
     public Player player { get; private set; }
     public AI ai1 { get; private set; }
@@ -72,6 +73,11 @@ public class EventManager
         };
     }
 
+    public void InitBoard(Board board)
+    {
+        this.board = board;
+    }
+    
     public void InitButtonsLogic (ButtonsLogic buttonsLogic)
     {
         ButtonsLogic = buttonsLogic;
@@ -80,6 +86,12 @@ public class EventManager
         {
             CurrentTurn = 0;
             Phase = GamePhase.Ai1Turn;
+        };
+
+        buttonsLogic.OnBuyProperty += () =>
+        {
+            property = board.GetCellIndex(player.BoardPosition) as PropertyCell;
+            property?.Buy(OwnerType.Player);
         };
     }
 

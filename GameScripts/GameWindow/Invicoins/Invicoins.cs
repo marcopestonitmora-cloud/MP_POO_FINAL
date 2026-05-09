@@ -33,4 +33,14 @@ public class Invicoins
     {
         
     }
+    
+    public void Pay(int value)
+    {
+        Amount -= value; // aquí se resta
+    }
+
+    public void Gain(int amount)
+    {
+        Amount += amount;
+    }
 }

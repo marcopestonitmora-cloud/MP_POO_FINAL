@@ -10,4 +10,9 @@ public class DoorCell: BoardCell
     {
         Console.WriteLine("DoorCell");
     }
+
+    public override void DrawOnLandUI()
+    {
+        
+    }
 }

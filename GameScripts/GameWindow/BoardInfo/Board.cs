@@ -4,6 +4,7 @@ public class Board
 {
     private readonly BoardCell[] _cells;
     public int CellCounter => _cells.Length;
+    public IEnumerable<BoardCell> GetAllCells() => _cells;
 
     public Board(BoardCell[] cells)
     {
