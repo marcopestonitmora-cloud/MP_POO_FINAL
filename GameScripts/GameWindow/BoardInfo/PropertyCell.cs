@@ -10,11 +10,9 @@ public enum OwnerType { None, Player, Ai1, Ai2 }
 public class PropertyCell: BoardCell
 {
     private int Price          { get; set; }
-    public OwnerType Owner    { get; set; }
-    public int CreditPrice    { get; private set; }
-    public int RentPrice      { get; private set; }
-
-    public int CreditCounter { get; set; }
+    private int CreditPrice    { get; set; }
+    private int RentPrice      { get; set; }
+    private int CreditCounter { get; set; }
     private int SellPrice      { get; set; }
 
     public PropertyCell(int index, Vector2 screenPosition, int price, int creditPrice, int creditCounter, int rentPrice, int sellPrice) : base(index, screenPosition)
@@ -49,41 +47,22 @@ public class PropertyCell: BoardCell
             rent = RentPrice * 8;
         }
 
-        EventManager.Instance.GetCharacter(currentPlayer).PayCell(rent);
-    }
-
-    public override void DrawOnLandUI()
-    {
-        switch (Owner)
-        {
-            case OwnerType.None:
-            {
-                Raylib.DrawTextureEx(buyIcone, new Vector2(57, 860), 0, 0.6f, Color.White);
-                Raylib.DrawText(buyText, 70, 990, 60, Color.White);
-                break;
-            }
-            case OwnerType.Player:
-            {
-                Raylib.DrawTextureEx(buyIcone, new Vector2(57, 860), 0, 0.6f, Color.White);
-                Raylib.DrawText(buyText, 70, 990, 60, Color.White);
-                Raylib.DrawText(sellText, 70, 760, 60, Color.White);
-                break;
-            }
-        }
+        EventManager.Instance.GetCharacter(currentPlayer).LoseInvicions(rent);
+        EventManager.Instance.GetCharacter(Owner).WinInvicions(rent);
     }
     
     // En PropertyCell
-    public void Buy(OwnerType buyer)
+    public override void Buy(OwnerType buyer)
     {
         if (Owner == OwnerType.None)
         {
             Owner = buyer;
-            EventManager.Instance.GetCharacter(buyer).PayCell(Price);
+            EventManager.Instance.GetCharacter(buyer).LoseInvicions(Price);
         }
         
-        if (Owner == buyer)
+        else if (Owner == buyer)
         {
-            EventManager.Instance.GetCharacter(buyer).PayCell(CreditPrice);
+            EventManager.Instance.GetCharacter(buyer).LoseInvicions(CreditPrice);
             CreditCounter++;
             Console.WriteLine("CreditCounter: " + CreditCounter);
         }
@@ -93,9 +72,26 @@ public class PropertyCell: BoardCell
         }
     }
 
-    public void Sell(OwnerType seller)
+    public override void Sell(OwnerType seller)
     {
         Owner = OwnerType.None;
-        EventManager.Instance.GetCharacter(seller).SellCell(SellPrice);
+        EventManager.Instance.GetCharacter(seller).WinInvicions(SellPrice);
     }
+    
+    public override bool CanBuy(OwnerType buyer)
+    {
+        if (Owner == OwnerType.None)
+        {
+            return true;
+        }
+
+        if (Owner == buyer && CreditCounter < 6)
+        {
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public override bool CanSell(OwnerType seller) => Owner == seller;
 }

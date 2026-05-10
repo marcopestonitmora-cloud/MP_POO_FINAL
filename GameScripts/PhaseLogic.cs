@@ -76,8 +76,7 @@ public class PhaseLogic
                 if (!aiTurnStarted)
                 {
                     aiTurnStarted = true;
-                    _ = aiLogic.AiRoll();
-                    Task.Run(async () => {await Task.Delay(3000); eventManager.GameEvents.aiEvents.AiTurnEnd();});
+                    aiLogic.AiRoll();
                 }
                 break;
             }
@@ -88,8 +87,7 @@ public class PhaseLogic
                 if (!aiTurnStarted)
                 {
                     aiTurnStarted = true;
-                    _ = aiLogic.AiRoll();
-                    Task.Run(async () => {await Task.Delay(3000); eventManager.GameEvents.aiEvents.AiTurnEnd();});
+                    aiLogic.AiRoll();
                 }
                 break;
             }

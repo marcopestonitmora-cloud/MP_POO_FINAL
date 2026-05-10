@@ -1,25 +1,34 @@
 ﻿using System.Diagnostics;
 using System.Numerics;
+using MP_POO_FINAL.Managers;
 using Raylib_cs;
 
 namespace MP_POO_FINAL.GameWindow.BoardInfo;
 
 public class MonsterCell: BoardCell
 {
-    public OwnerType Owner    { get; set; }
-    public int Price          { get; private set; }
-    public int RentPrice          { get; private set; }
+    private int Price          { get; set; }
+    private int RentPrice          { get; set; }
+    private int SellPrice         { get; set; }
     
-    public MonsterCell(int index,Vector2 screenPosition, int price, int rentPrice) : base(index, screenPosition)
+    
+    public MonsterCell(int index,Vector2 screenPosition, int price, int rentPrice, int sellPrice) : base(index, screenPosition)
     {
         Owner = OwnerType.None;
         Price = price;
         RentPrice = rentPrice;
+        SellPrice = sellPrice;
     }
     
     public override void OnLand(OwnerType currentPlayer)
     {
-        Console.WriteLine("Monster cell");
+        if (Owner == OwnerType.None || currentPlayer == Owner)
+        {
+            return;
+        }
+        
+        EventManager.Instance.GetCharacter(currentPlayer).LoseInvicions(RentPrice);
+        EventManager.Instance.GetCharacter(Owner).WinInvicions(RentPrice);
     }
 
     public override void DrawOnLandUI()
@@ -39,4 +48,31 @@ public class MonsterCell: BoardCell
             }
         }
     }
+    
+    public override void Buy(OwnerType buyer)
+    {
+        if (Owner == buyer)
+        {
+            return;
+        }
+        
+        if (Owner == OwnerType.None)
+        {
+            Owner = buyer;
+            EventManager.Instance.GetCharacter(buyer).LoseInvicions(Price);
+        }
+    }
+
+    public override void Sell(OwnerType seller)
+    {
+        Owner = OwnerType.None;
+        EventManager.Instance.GetCharacter(seller).WinInvicions(SellPrice);
+    }
+    
+    public override bool CanBuy(OwnerType buyer)
+    {
+        return Owner == OwnerType.None;
+    }
+    
+    public override bool CanSell(OwnerType seller) => Owner == seller;
 }

@@ -15,4 +15,7 @@ public class JhonCell: BoardCell
     {
         
     }
+    
+    public override void Buy(OwnerType currentPlayer) {}
+    public override void Sell(OwnerType currentPlayer){}
 }

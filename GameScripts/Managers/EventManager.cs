@@ -13,10 +13,14 @@ public class EventManager
     public static EventManager Instance => instance;
     public GameEvents GameEvents { get; } = new GameEvents(); 
     public GamePhase Phase { get; set; } = GamePhase.RollToStart;
+    
+    public bool IsAnimating { get; set; } = false;
+    public bool AlreadyRolled { get; set; } = false;
     public ButtonsLogic ButtonsLogic { get; private set; }
     public Board board { get; private set; }
     public PropertyCell property { get; private set; }
     public int CurrentTurn { get; set; } = 0; // 0 = Player, 1 = Ai1, 2 = Ai2
+    
     public Player player { get; private set; }
     public AI ai1 { get; private set; }
     public AI ai2 { get; private set; }
@@ -90,14 +94,14 @@ public class EventManager
 
         buttonsLogic.OnBuyProperty += () =>
         {
-            property = board.GetCellIndex(player.BoardPosition) as PropertyCell;
-            property?.Buy(OwnerType.Player);
+            BoardCell cell = board.GetCellIndex(player.BoardPosition);
+            cell?.Buy(OwnerType.Player);
         };
 
         buttonsLogic.OnSellProperty += () =>
         {
-            property = board.GetCellIndex(player.BoardPosition) as PropertyCell;
-            property?.Sell(OwnerType.Player);
+            BoardCell cell = board.GetCellIndex(player.BoardPosition);
+            cell?.Sell(OwnerType.Player);
         };
     }
 

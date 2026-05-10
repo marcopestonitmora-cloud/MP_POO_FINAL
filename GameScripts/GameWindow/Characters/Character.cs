@@ -22,14 +22,14 @@ public abstract class Character
         ScreenPosition = new Vector2(1370, 960);
     }
 
-    public virtual async Task Move (int diceNumber, Board board)
+    public virtual async Task Move(int diceNumber, Board board)
     { 
         CurrentPosition = (BoardPosition) % board.CellCounter;
-        
         BoardPosition = (BoardPosition + diceNumber) % board.CellCounter;
 
-        await CellJump(CurrentPosition,diceNumber,board);
-       
+        await CellJump(CurrentPosition, diceNumber, board);
+    
+        Console.WriteLine($"Llamando OnLand en casilla {BoardPosition} con {OwnerType}");
         board.GetCellIndex(BoardPosition).OnLand(OwnerType);
     }
 
@@ -39,13 +39,20 @@ public abstract class Character
         {
             int nextPosition = (currentPosition + i) % board.CellCounter;
 
+            //Si nos encontramos en la casilla de inicio y aun nos quedan movimientos por dar se llama al metodo OnPass de la startCell
+            if (nextPosition == 0 && i < steps)
+            {
+                StartCell startCell = board.GetCellIndex(0) as StartCell;
+                startCell?.OnPass(OwnerType);
+            }
+            
             ScreenPosition = board.GetCellIndex(nextPosition).ScreenPosition;
-
+            
             await Task.Delay(500);
         }
     }
 
-    public virtual void PayCell(int cellPrice)
+    public virtual void LoseInvicions(int cellPrice)
     {
         if (Coins.Amount < cellPrice)
         {
@@ -60,7 +67,7 @@ public abstract class Character
         }
     }
 
-    public virtual void SellCell(int cellPrice)
+    public virtual void WinInvicions(int cellPrice)
     {
         Coins.Amount += cellPrice;
     }

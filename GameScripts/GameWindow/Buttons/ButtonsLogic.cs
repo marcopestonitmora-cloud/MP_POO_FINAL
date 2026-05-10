@@ -1,6 +1,4 @@
-﻿using MP_POO_FINAL.Events;
-using MP_POO_FINAL.GameScripts.Events;
-using MP_POO_FINAL.GameWindow.Dice;
+﻿using MP_POO_FINAL.GameScripts.Events;
 using MP_POO_FINAL.GameWindow.BoardInfo;
 using MP_POO_FINAL.GameWindow.Characters;
 using MP_POO_FINAL.Managers;
@@ -22,7 +20,6 @@ public class ButtonsLogic
         return playButton.IsClicked();
     }
     
-    
     //SAME AS THE ROLL DICE BUT JUST FOR THE INITIAL PART OF THE GAME
     public async void StartDiceRollButton(Button button, MouseTracker mouse, GameEvents gameEvents)
     {
@@ -36,10 +33,20 @@ public class ButtonsLogic
     //ROLLS THE DICE 
     public void DiceButton(Button playButton, MouseTracker mouse, Character player, Board board)
     {
-        playButton.Update(mouse);
+        if (EventManager.Instance.IsAnimating)
+        {
+            return;
+        }
 
+        if (EventManager.Instance.AlreadyRolled)
+        {
+            return;
+        }
+
+        playButton.Update(mouse);
         if (playButton.IsClicked())
         {
+            EventManager.Instance.AlreadyRolled = true;
             int steps = EventManager.Instance.GameEvents.diceRoll.RollTheDice();
             player.Move(steps, board);
         }
@@ -51,13 +58,13 @@ public class ButtonsLogic
         buyButton.Update(mouse);
         if (buyButton.IsClicked())
         {
-            property = EventManager.Instance.board.GetCellIndex(EventManager.Instance.player.BoardPosition) as PropertyCell;
+            BoardCell cell = EventManager.Instance.board.GetCellIndex(EventManager.Instance.player.BoardPosition);
 
-            if (property.Owner == OwnerType.Player && property.CreditCounter >= 6)
+            if (!cell.CanBuy(OwnerType.Player))
             {
                 return;
             }
-
+        
             OnBuyProperty?.Invoke();
         }
     }
@@ -67,10 +74,9 @@ public class ButtonsLogic
         sellButton.Update(mouse);
         if (sellButton.IsClicked())
         {
-            if (property.Owner != OwnerType.Player)
-            {
-                return;
-            }
+            BoardCell cell = EventManager.Instance.board.GetCellIndex(EventManager.Instance.player.BoardPosition);
+        
+            if (!cell.CanSell(OwnerType.Player)) return;
 
             OnSellProperty?.Invoke();
         }
@@ -93,6 +99,7 @@ public class ButtonsLogic
         endTurnButton.Update(mouse);
         if (endTurnButton.IsClicked())
         {
+            EventManager.Instance.AlreadyRolled = false;
             OnPlayerTurnEnded?.Invoke();
         }
     }

@@ -15,18 +15,21 @@ public class AI : Character
     }
 
     protected override OwnerType OwnerType { get; }
-
-    public override async Task Move (int diceNumber, Board board)
-    {
-        await base.Move(diceNumber, board);
-    }
-
+    
     protected override async Task CellJump(int currentPosition, int steps, Board board)
     {
         await base.CellJump(currentPosition, steps, board);
+        // quita el AiTurnEnd de aqui
+    }
 
-        await Task.Delay(3000);
+    public override async Task Move(int diceNumber, Board board)
+    {
+        EventManager.Instance.IsAnimating = true;
+        await base.Move(diceNumber, board);
         
-        gameEvents.aiEvents.AiTurnEnd();
+        await Task.Delay(2000);
+        
+        EventManager.Instance.IsAnimating = false;
+        EventManager.Instance.GameEvents.aiEvents.AiTurnEnd();
     }
 }
