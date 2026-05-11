@@ -13,13 +13,14 @@ public class PhaseLogic
     private EventManager eventManager = EventManager.Instance;
     
     private WhoWinsTheRollUi rollWinnerUI = new WhoWinsTheRollUi();
-    private StartRollUI startRollUi = new StartRollUI();
+    private StartRollUI startRollUI = new StartRollUI();
     private OnLandTurnUi onLandTurnUI = new OnLandTurnUi();
     
     private AiLogic aiLogic;
     private AiTurnUi aiTurnUI;
     private PlayerTurnUI playerUI;
     private GameUi gameUI;
+    private PropetiesUI propetiesUI;
 
     private AI ai1;
     private AI ai2;
@@ -36,8 +37,10 @@ public class PhaseLogic
         this.ai1 = ai1;
         this.ai2 = ai2;
         this.board = board;
+        
         aiTurnUI = new AiTurnUi(diceNumbers);
         playerUI = new PlayerTurnUI(diceNumbers);
+        propetiesUI = new PropetiesUI(board);
         aiLogic = new AiLogic(ai1, ai2, board);
     }
 
@@ -54,7 +57,7 @@ public class PhaseLogic
             case GamePhase.RollToStart:
             {
                 gameUI.DrawEssentials();
-                startRollUi.RollStart(gameUI.diceIcone);
+                startRollUI.RollStart(gameUI.diceIcone);
                 break;
             }
             case GamePhase.WhoWinsTheRoll:
@@ -66,12 +69,14 @@ public class PhaseLogic
             case GamePhase.Playing:
             {
                 gameUI.DrawEssentials();
+                propetiesUI.DrawPropetiesUI();
                 playerUI.DrawPlayerUI();
                 break;
             }
             case GamePhase.Ai1Turn:
             {
                 gameUI.DrawEssentials();
+                propetiesUI.DrawPropetiesUI();
                 aiTurnUI.DrawAiUi();
                 if (!aiTurnStarted)
                 {
@@ -83,6 +88,7 @@ public class PhaseLogic
             case GamePhase.Ai2Turn:
             {
                 gameUI.DrawEssentials();
+                propetiesUI.DrawPropetiesUI();
                 aiTurnUI.DrawAiUi();
                 if (!aiTurnStarted)
                 {
@@ -94,6 +100,7 @@ public class PhaseLogic
             case GamePhase.OnLandTurn:
             {
                 gameUI.DrawEssentials();
+                propetiesUI.DrawPropetiesUI();
                 onLandTurnUI.DrawOnLadUi(board);
                 break;
             }

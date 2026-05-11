@@ -5,17 +5,16 @@ using Raylib_cs;
 
 namespace MP_POO_FINAL.GameWindow.BoardInfo;
 
-public enum OwnerType { None, Player, Ai1, Ai2 }
-
 public class PropertyCell: BoardCell
 {
     private int Price          { get; set; }
     private int CreditPrice    { get; set; }
     private int RentPrice      { get; set; }
-    private int CreditCounter { get; set; }
+    public int CreditCounter { get; set; }
     private int SellPrice      { get; set; }
+    public Color Color { get; set; }
 
-    public PropertyCell(int index, Vector2 screenPosition, int price, int creditPrice, int creditCounter, int rentPrice, int sellPrice) : base(index, screenPosition)
+    public PropertyCell(int index, Vector2 screenPosition, int price, int creditPrice, int creditCounter, int rentPrice, int sellPrice, Color color) : base(index, screenPosition)
     {
         CreditCounter = creditCounter;
         Price = price;
@@ -23,6 +22,7 @@ public class PropertyCell: BoardCell
         CreditPrice = creditPrice;
         RentPrice = rentPrice;
         SellPrice = sellPrice;
+        Color = color;
     }
 
     public override void OnLand(OwnerType currentPlayer)
@@ -56,8 +56,8 @@ public class PropertyCell: BoardCell
     {
         if (Owner == OwnerType.None)
         {
-            Owner = buyer;
             EventManager.Instance.GetCharacter(buyer).LoseInvicions(Price);
+            Owner = buyer;
         }
         
         else if (Owner == buyer)
@@ -74,6 +74,13 @@ public class PropertyCell: BoardCell
 
     public override void Sell(OwnerType seller)
     {
+        while (CreditCounter > 0)
+        {
+            CreditCounter--;
+            EventManager.Instance.GetCharacter(seller).WinInvicions(CreditPrice - (CreditCounter/10));
+            return;
+        }
+
         Owner = OwnerType.None;
         EventManager.Instance.GetCharacter(seller).WinInvicions(SellPrice);
     }

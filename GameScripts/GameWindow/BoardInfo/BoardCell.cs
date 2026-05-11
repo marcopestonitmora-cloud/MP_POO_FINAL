@@ -3,11 +3,14 @@ using Raylib_cs;
 
 namespace MP_POO_FINAL.GameWindow.BoardInfo;
 
+public enum OwnerType { None, Player, Ai1, Ai2 }
+
 public abstract class BoardCell
 {
     public int Index { get; private set; }
     public Vector2 ScreenPosition { get; private set; }
-    public OwnerType Owner    { get; set; }
+    protected OwnerType Owner { get; set; }
+    public OwnerType CellOwner => Owner;
 
     protected Texture2D buyIcone;
     protected string buyText = "BUY";

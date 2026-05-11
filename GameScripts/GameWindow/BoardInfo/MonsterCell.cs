@@ -58,8 +58,8 @@ public class MonsterCell: BoardCell
         
         if (Owner == OwnerType.None)
         {
-            Owner = buyer;
             EventManager.Instance.GetCharacter(buyer).LoseInvicions(Price);
+            Owner = buyer;
         }
     }
 
