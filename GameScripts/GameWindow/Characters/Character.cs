@@ -10,7 +10,6 @@ public abstract class Character
     public int BoardPosition { get; set; } = 0;
     public Vector2 ScreenPosition {get; private set;}
     //public Inventory<ActionCard> Cards { get; protected set; }
-    public List<PropertyCell> Properties { get; protected set; }
     public bool IsBankrupt { get; protected set; } = false;
     protected abstract OwnerType OwnerType { get; }
     private int CurrentPosition {get; set;} = 0;
