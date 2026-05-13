@@ -10,7 +10,11 @@ public abstract class BoardCell
     public int Index { get; private set; }
     public Vector2 ScreenPosition { get; private set; }
     protected OwnerType Owner { get; set; }
-    public OwnerType CellOwner => Owner;
+    public OwnerType CellOwner
+    {
+        get => Owner;
+        set => Owner = value;
+    }
 
     protected Texture2D buyIcone;
     protected Texture2D sellIcone;

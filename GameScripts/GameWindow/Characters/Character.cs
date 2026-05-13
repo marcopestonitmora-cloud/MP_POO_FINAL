@@ -14,6 +14,7 @@ public abstract class Character
     protected abstract OwnerType OwnerType { get; }
     private int CurrentPosition {get; set;} = 0;
     public DrawInvicoins Coins {get; set;}
+    public bool canRollAgain { get; set; } = false;
 
     protected Character(int invicoinsCounter)
     {

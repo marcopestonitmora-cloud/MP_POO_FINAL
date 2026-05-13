@@ -7,9 +7,9 @@ namespace MP_POO_FINAL.GameWindow.BoardInfo;
 
 public class PropertyCell: BoardCell
 {
-    private int Price          { get; set; }
+    public int Price          { get; set; }
     private int CreditPrice    { get; set; }
-    private int RentPrice      { get; set; }
+    public int RentPrice      { get; set; }
     public int CreditCounter { get; set; }
     private int SellPrice      { get; set; }
     public Color Color { get; set; }

@@ -52,12 +52,28 @@ public class EventManager
 
         GameEvents.aiEvents.OnNextAi2Turn += () =>
         {
+            if (ai1.canRollAgain)
+            {
+                ai1.canRollAgain = false;
+                GameEvents.diceRoll.Reset();
+                Phase = GamePhase.Ai1Turn;
+                return;
+            }
+            
             CurrentTurn = 1; 
             Phase = GamePhase.Ai2Turn;
         };
 
         GameEvents.aiEvents.OnNextPlayerTurn += () =>
         {
+            if (ai2.canRollAgain)
+            {
+                ai2.canRollAgain = false;
+                GameEvents.diceRoll.Reset();
+                Phase = GamePhase.Ai2Turn;
+                return;
+            }
+
             CurrentTurn = 2; 
             GameEvents.diceRoll.Reset();
             Phase = GamePhase.Playing;
@@ -87,6 +103,14 @@ public class EventManager
 
         buttonsLogic.OnPlayerTurnEnded += () =>
         {
+            if (player.canRollAgain)
+            {
+                player.canRollAgain = false;
+                GameEvents.diceRoll.Reset();
+                Phase = GamePhase.Playing;
+                return;
+            }
+
             CurrentTurn = 0;
             Phase = GamePhase.Ai1Turn;
         };
