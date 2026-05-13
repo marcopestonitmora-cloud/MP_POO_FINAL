@@ -13,6 +13,7 @@ public abstract class BoardCell
     public OwnerType CellOwner => Owner;
 
     protected Texture2D buyIcone;
+    protected Texture2D sellIcone;
     protected string buyText = "BUY";
     protected string sellText = "SELL";
 
@@ -30,6 +31,7 @@ public abstract class BoardCell
     public virtual void LoadAssets()
     {
         buyIcone = Raylib.LoadTexture("Sprites/IV_money.png");
+        sellIcone =  Raylib.LoadTexture("Sprites/SellIcone.png");
     }
 
     public abstract void OnLand(OwnerType currentPlayer);  
@@ -47,6 +49,7 @@ public abstract class BoardCell
             case OwnerType.Player:
             {
                 Raylib.DrawTextureEx(buyIcone, new Vector2(57, 860), 0, 0.6f, Color.White);
+                Raylib.DrawTextureEx(sellIcone, new Vector2(-120, 500), 0, 0.8f, Color.White);
                 Raylib.DrawText(buyText, 70, 990, 60, Color.White);
                 Raylib.DrawText(sellText, 70, 760, 60, Color.White);
                 break;

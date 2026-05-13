@@ -14,9 +14,9 @@ public class PhaseLogic
     
     private WhoWinsTheRollUi rollWinnerUI = new WhoWinsTheRollUi();
     private StartRollUI startRollUI = new StartRollUI();
-    private OnLandTurnUi onLandTurnUI = new OnLandTurnUi();
-    
     private AiLogic aiLogic;
+
+    private OnLandTurnUi onLandTurnUI;
     private AiTurnUi aiTurnUI;
     private PlayerTurnUI playerUI;
     private GameUi gameUI;
@@ -39,7 +39,8 @@ public class PhaseLogic
         this.board = board;
         
         aiTurnUI = new AiTurnUi(diceNumbers);
-        playerUI = new PlayerTurnUI(diceNumbers);
+        playerUI = new PlayerTurnUI(diceNumbers,gameUi);
+        onLandTurnUI = new OnLandTurnUi(gameUi);
         propetiesUI = new PropetiesUI(board);
         aiLogic = new AiLogic(ai1, ai2, board);
     }

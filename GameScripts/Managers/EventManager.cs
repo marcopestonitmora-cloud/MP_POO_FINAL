@@ -18,7 +18,6 @@ public class EventManager
     public bool AlreadyRolled { get; set; } = false;
     public ButtonsLogic ButtonsLogic { get; private set; }
     public Board board { get; private set; }
-    public PropertyCell property { get; private set; }
     public int CurrentTurn { get; set; } = 0; // 0 = Player, 1 = Ai1, 2 = Ai2
     
     public Player player { get; private set; }

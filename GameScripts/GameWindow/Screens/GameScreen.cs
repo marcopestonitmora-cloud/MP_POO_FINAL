@@ -17,6 +17,7 @@ public class GameScreen : IScreen
     private PhaseLogic phaseLogic;
     private GameUi gameUi;
     private OnLandTurnUi onLandTurn;
+    private PlayerTurnUI playerUI;
     
     public GameScreen(Player player, AI ai1, AI ai2, DrawDice diceNumbers, Board board)
     {
@@ -25,11 +26,12 @@ public class GameScreen : IScreen
         _ai2    = ai2;
         this.diceNumbers = diceNumbers;
         gameUi      = new GameUi(player, ai1, ai2);
-        onLandTurn = new OnLandTurnUi();
+        playerUI = new PlayerTurnUI(diceNumbers, gameUi);
+        onLandTurn = new OnLandTurnUi(gameUi);
         phaseLogic  = new PhaseLogic(gameUi, diceNumbers, ai1, ai2,  board);
     }
-    
-    public void LoadAssets() =>  gameUi.LoadAssets();
+
+    public void LoadAssets() => gameUi.LoadAssets();
     public void Update(MouseTracker mouse, ButtonsLogic buttonLogic, Character player, Character ai1, Character ai2, Board board)
     {
         switch (EventManager.Instance.Phase)
