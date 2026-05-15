@@ -9,12 +9,12 @@ public class PropertyCard1 : Card
     private Board Board;
     private int number { get; set; } = 0;
     
-    public PropertyCard1(string type, string description, OwnerType owner, Player player, AI ai1, AI ai2, Board board) : base(type, description, owner, player, ai1, ai2)
+    public PropertyCard1(string type, string description, OwnerType owner, Board board) : base(type, description, owner)
     {
         Board = board;
     }
 
-    //Robas la propiedad de un rival perdiendo solo el 30% de su valor
+    //Robas la propiedad de un rival pagando solo el 30% de su valor
     public override void ActionCard(EventManager manager, OwnerType user)
     {
         Random random = new Random();

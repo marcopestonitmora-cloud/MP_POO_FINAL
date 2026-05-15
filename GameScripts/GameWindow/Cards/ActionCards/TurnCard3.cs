@@ -8,7 +8,7 @@ public class TurnCard3 : Card
 {
     private Board Board;
     
-    public TurnCard3(string type, string description, OwnerType owner, Player player, AI ai1, AI ai2, Board board) : base(type, description, owner, player, ai1, ai2)
+    public TurnCard3(string type, string description, OwnerType owner, Board board) : base(type, description, owner)
     {
         this.Board = board;
     }

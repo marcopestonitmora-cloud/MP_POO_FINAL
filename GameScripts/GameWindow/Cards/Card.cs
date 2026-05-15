@@ -13,14 +13,11 @@ public abstract class Card
     public AI ai1;
     private AI ai2;
 
-    protected Card(string type, string description,  OwnerType owner, Player player,  AI ai1, AI ai2)
+    protected Card(string type, string description,  OwnerType owner)
     {
         Type = type;
         Description = description;
         Owner = owner;
-        this.player = player;
-        this.ai1 = ai1;
-        this.ai2 = ai2;
     }
 
     public abstract void ActionCard(EventManager manager, OwnerType owner);

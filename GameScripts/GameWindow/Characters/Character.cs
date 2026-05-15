@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using MP_POO_FINAL.GameWindow.BoardInfo;
+using MP_POO_FINAL.GameWindow.Cards;
 using MP_POO_FINAL.GameWindow.Invicoins;
 using MP_POO_FINAL.Managers;
 
@@ -9,7 +10,7 @@ public abstract class Character
 {
     public int BoardPosition { get; set; } = 0;
     public Vector2 ScreenPosition {get; private set;}
-    //public Inventory<ActionCard> Cards { get; protected set; }
+    public List<Card> Inventory { get; protected set; }
     public bool IsBankrupt { get; protected set; } = false;
     protected abstract OwnerType OwnerType { get; }
     private int CurrentPosition {get; set;} = 0;
@@ -20,6 +21,7 @@ public abstract class Character
     {
         Coins = new DrawInvicoins(invicoinsCounter);
         ScreenPosition = new Vector2(1370, 960);
+        Inventory = new List<Card>();
     }
 
     public virtual async Task Move(int diceNumber, Board board)

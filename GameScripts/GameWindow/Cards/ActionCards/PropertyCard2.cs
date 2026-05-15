@@ -4,12 +4,12 @@ using MP_POO_FINAL.Managers;
 
 namespace MP_POO_FINAL.GameWindow.Cards.ActionCards;
 
-public class PropertyCards: Card
+public class PropertyCard2: Card
 {
     private Board Board;
     private int number { get; set; } = 0;
     
-    public PropertyCards(string type, string description, OwnerType owner, Player player, AI ai1, AI ai2, Board board) : base(type, description, owner, player, ai1, ai2)
+    public PropertyCard2(string type, string description, OwnerType owner,Board board) : base(type, description, owner)
     {
         Board = board;
     }

@@ -9,7 +9,7 @@ public class PropertyCard3 : Card
     private Board Board { get; set; }
     private int number;
     
-    public PropertyCard3(string type, string description, OwnerType owner, Player player, AI ai1, AI ai2, Board board) : base(type, description, owner, player, ai1, ai2)
+    public PropertyCard3(string type, string description, OwnerType owner, Board board) : base(type, description, owner)
     {
         Board = board;
     }
