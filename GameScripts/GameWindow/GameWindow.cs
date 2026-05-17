@@ -31,19 +31,15 @@ public class GameWindow
 
     public void Run()
     {
-        player = new Player(999,OwnerType.Player);
-        ai1 = new AI(0,OwnerType.Ai1);
-        ai2 = new AI(0, OwnerType.Ai2);
+        player = new Player(500,OwnerType.Player);
+        ai1 = new AI(500,OwnerType.Ai1);
+        ai2 = new AI(500, OwnerType.Ai2);
         
         board  = BoardFactory.CreateBoard();
         
         EventManager.Instance.InitCharacters(player,ai1,ai2);
         EventManager.Instance.InitBoard(board);
         EventManager.Instance.InitDeck(board);
-        foreach (Card card in EventManager.Instance.CardDeck.GetCards())
-        {
-            Console.WriteLine(card.Description);
-        }
         EventManager.Instance.InitButtonsLogic(buttonLogic);
         
         ai1Logic  = new AILogic(ai1, board);
@@ -79,6 +75,7 @@ public class GameWindow
 
             if (EventManager.Instance.Phase == GamePhase.BackToStart && currentScreen == gameScreen)
             {
+                EventManager.Instance.Phase = GamePhase.RollToStart;
                 currentScreen = startScreen;
                 startScreen.Reset();
                 ResetGame();

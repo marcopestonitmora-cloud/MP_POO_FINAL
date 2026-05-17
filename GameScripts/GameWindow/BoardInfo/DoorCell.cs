@@ -10,7 +10,6 @@ public class DoorCell: BoardCell
     public override void OnLand(OwnerType currentPlayer)
     {
         EventManager.Instance.GetCharacter(currentPlayer).SkippedTurns = 1;
-        Console.WriteLine("La puerta esta cerrada, pierdes un turno!");
     }
 
     public override void DrawOnLandUI() {}

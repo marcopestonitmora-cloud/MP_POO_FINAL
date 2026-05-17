@@ -16,6 +16,7 @@ public class DiceRoll
         return Number;
     }
     
+    //Evita que aparezca la imagen del dado obtenido en el turno anterior
     public void Reset()
     {
         Number = 0;

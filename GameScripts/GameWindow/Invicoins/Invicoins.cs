@@ -32,7 +32,6 @@ public class Invicoins
 
     private void BankRuptcy()
     {
-        Console.WriteLine("BankRuptcy llamado!");
         OnBankRuptcy?.Invoke();
     }
 }

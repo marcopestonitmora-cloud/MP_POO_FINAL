@@ -26,12 +26,9 @@ public class StartRollEvent
         for (int i = 0; i < throwers.Length; i++)
         {
             diceNumber[i] = roll.RollTheDice();
-            Console.WriteLine($"{throwers[i]} ha sacado {diceNumber[i]}");
         }
         
         StarterIndex = GetHighest();
-        Console.WriteLine($"Empieza {throwers[StarterIndex]}");
-        
         
         HasRolled = true;
         

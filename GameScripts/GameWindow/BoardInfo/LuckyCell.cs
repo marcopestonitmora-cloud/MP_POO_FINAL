@@ -10,10 +10,8 @@ public class LuckyCell: BoardCell
     
     public override void OnLand(OwnerType currentPlayer)
     {
-        Console.WriteLine("Lucky Cell");
         Card card = EventManager.Instance.CardDeck.TakeCard();
         EventManager.Instance.AddCard(currentPlayer,card);
-        Console.WriteLine($"Has obtenido {card.Description}");
     }
 
     public override void DrawOnLandUI() {}

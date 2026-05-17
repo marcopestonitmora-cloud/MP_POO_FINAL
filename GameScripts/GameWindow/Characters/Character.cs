@@ -36,8 +36,7 @@ public abstract class Character
         BoardPosition = (BoardPosition + diceNumber) % board.CellCounter;
 
         await CellJump(CurrentPosition, diceNumber, board);
-    
-        Console.WriteLine($"Llamando OnLand en casilla {BoardPosition} con {OwnerType}");
+        
         board.GetCellIndex(BoardPosition).OnLand(OwnerType);
     }
 
