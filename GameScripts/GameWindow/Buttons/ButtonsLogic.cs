@@ -10,6 +10,8 @@ public class ButtonsLogic
     public event Action OnPlayerTurnEnded;
     public event Action OnSellProperty;
     public event Action OnBuyProperty;
+    public event Action OnInventoryClicked;
+    public event Action OnExitInventoryClicked;
     private OwnerType owner;
     private PropertyCell property;
     
@@ -89,7 +91,16 @@ public class ButtonsLogic
 
         if (inventoryButton.IsClicked())
         {
-            Console.WriteLine("PUTA vigo!");
+            OnInventoryClicked?.Invoke();
+        }
+    }
+
+    public void ExitInventoryButton(Button exitInventoryButton, MouseTracker mouse)
+    {
+        exitInventoryButton.Update(mouse);
+        if (exitInventoryButton.IsClicked())
+        {
+            OnExitInventoryClicked?.Invoke();
         }
     }
 

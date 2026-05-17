@@ -1,14 +1,14 @@
 ﻿using MP_POO_FINAL.GameWindow.BoardInfo;
 using MP_POO_FINAL.GameWindow.Characters;
 using MP_POO_FINAL.Managers;
+using Raylib_cs;
 
 namespace MP_POO_FINAL.GameWindow.Cards.ActionCards;
 
 public class MoneyCard1: Card
 {
-    public MoneyCard1(string type, string description, OwnerType owner) : base(type, description, owner)
+    public MoneyCard1(string type, string description, OwnerType owner, Color color) : base(type, description, owner, color)
     {
-        
     }
 
     public override void ActionCard(EventManager manager, OwnerType owner)

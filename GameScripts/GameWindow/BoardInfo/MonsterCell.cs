@@ -10,14 +10,15 @@ public class MonsterCell: BoardCell
     private int Price          { get; set; }
     private int RentPrice          { get; set; }
     private int SellPrice         { get; set; }
+    public Color Color;
     
-    
-    public MonsterCell(int index,Vector2 screenPosition, int price, int rentPrice, int sellPrice) : base(index, screenPosition)
+    public MonsterCell(int index,Vector2 screenPosition, int price, int rentPrice, int sellPrice, Color color) : base(index, screenPosition)
     {
         Owner = OwnerType.None;
         Price = price;
         RentPrice = rentPrice;
         SellPrice = sellPrice;
+        Color = color;
     }
     
     public override void OnLand(OwnerType currentPlayer)
@@ -29,24 +30,6 @@ public class MonsterCell: BoardCell
         
         EventManager.Instance.GetCharacter(currentPlayer).LoseInvicions(RentPrice);
         EventManager.Instance.GetCharacter(Owner).WinInvicions(RentPrice);
-    }
-
-    public override void DrawOnLandUI()
-    {
-        switch(Owner)
-        {
-            case OwnerType.None:
-            {
-                Raylib.DrawTextureEx(buyIcone, new Vector2(57, 860), 0, 0.6f, Color.White);
-                Raylib.DrawText(buyText, 70, 990, 60, Color.White);
-                break;
-            }
-            case OwnerType.Player:
-            {
-                Raylib.DrawText(sellText, 1500, 600, 50, Color.White);
-                break;
-            }
-        }
     }
     
     public override void Buy(OwnerType buyer)

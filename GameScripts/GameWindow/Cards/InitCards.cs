@@ -1,5 +1,6 @@
 ﻿using MP_POO_FINAL.GameWindow.BoardInfo;
 using MP_POO_FINAL.GameWindow.Cards.ActionCards;
+using Raylib_cs;
 
 namespace MP_POO_FINAL.GameWindow.Cards;
 
@@ -16,41 +17,42 @@ public class InitCards
     {
         return new List<Card>()
         {
-            new MoneyCard1("Money","STEAL 25% OF EACH OPPONENT'S INVICIONS",OwnerType.None),
-            new MoneyCard1("Money","STEAL 25% OF EACH OPPONENT'S INVICIONS",OwnerType.None),
+            new MoneyCard1("MONEY CARD","STEAL 25% OF EACH\n OPPONENT'S INVICIONS",OwnerType.None, Color.Yellow),
+            new MoneyCard1("MONEY CARD","STEAL 25% OF EACH\n OPPONENT'S INVICIONS",OwnerType.None, Color.Yellow),
             
-            new MoneyCard2("Money", "GAIN COINS EQUAL TO YOUR CURRENT TILE NUMBER ×10", OwnerType.None),
-            new MoneyCard2("Money", "GAIN COINS EQUAL TO YOUR CURRENT TILE NUMBER ×10", OwnerType.None),
-            new MoneyCard2("Money", "GAIN COINS EQUAL TO YOUR CURRENT TILE NUMBER ×10", OwnerType.None),
+            new MoneyCard2("MONEY CARD", "GAIN COINS EQUAL TO\n YOUR CURRENT TILE\n NUMBER ×10", OwnerType.None, Color.Yellow),
+            new MoneyCard2("MONEY CARD", "GAIN COINS EQUAL TO\n YOUR CURRENT TILE\n NUMBER ×10", OwnerType.None, Color.Yellow),
+            new MoneyCard2("MONEY CARD", "GAIN COINS EQUAL TO\n YOUR CURRENT TILE\n NUMBER ×10", OwnerType.None, Color.Yellow),
             
-            new MoneyCard3("Money","THE RICHEST OPPONENT PAYS YOU 200 COINS",OwnerType.None),
-            new MoneyCard3("Money","THE RICHEST OPPONENT PAYS YOU 200 COINS",OwnerType.None),
+            new MoneyCard3("MONEY CARD","THE RICHEST OPPONENT\n PAYS YOU 200 COINS",OwnerType.None, Color.Yellow),
+            new MoneyCard3("MONEY CARD","THE RICHEST OPPONENT\n PAYS YOU 200 COINS",OwnerType.None, Color.Yellow),
             
-            new MoneyCard4("Money", "ALL PLAYERS LOSE 100 INVICOINS",OwnerType.None),
-            new MoneyCard4("Money", "ALL PLAYERS LOSE 100 INVICOINS",OwnerType.None),
+            new MoneyCard4("MONEY CARD", "ALL PLAYERS LOSE\n 100 INVICOINS",OwnerType.None, Color.Yellow),
+            new MoneyCard4("MONEY CARD", "ALL PLAYERS LOSE\n 100 INVICOINS",OwnerType.None, Color.Yellow),
             
-            new MoneyCard5("Money","COIN FLIP: HEADS DOUBLE YOUR COINS, TAILS LOSE HALF",OwnerType.None),
-            new MoneyCard5("Money","COIN FLIP: HEADS DOUBLE YOUR COINS, TAILS LOSE HALF",OwnerType.None),
+            new MoneyCard5("MONEY CARD","COIN FLIP: HEADS DOUBLE\n YOUR COINS, TAILS \nLOSE HALF",OwnerType.None, Color.Yellow),
+            new MoneyCard5("MONEY CARD","COIN FLIP: HEADS DOUBLE\n YOUR COINS, TAILS \nLOSE HALF",OwnerType.None, Color.Yellow),
             
-            new PropertyCard1("Property", "STEAL AN OPPONENT'S PROPERTY BY PAYING ONLY 30% OF ITS VALUE", OwnerType.None, Board),
-            new PropertyCard1("Property", "STEAL AN OPPONENT'S PROPERTY BY PAYING ONLY 30% OF ITS VALUE", OwnerType.None, Board),
+            new PropertyCard1("PROPERTY CARD", "STEAL AN OPPONENT'S \nPROPERTY BY PAYING ONLY \n30% OF ITS VALUE", OwnerType.None,Color.Blue, Board),
+            new PropertyCard1("PROPERTY CARD", "STEAL AN OPPONENT'S \nPROPERTY BY PAYING ONLY \n30% OF ITS VALUE", OwnerType.None,Color.Blue ,Board),
             
-            new PropertyCard2("Property", "REMOVE ALL CREDITS FROM ONE OPPONENT’S PROPERTY", OwnerType.None, Board),
-            new PropertyCard2("Property", "REMOVE ALL CREDITS FROM ONE OPPONENT’S PROPERTY", OwnerType.None, Board),
-            new PropertyCard2("Property", "REMOVE ALL CREDITS FROM ONE OPPONENT’S PROPERTY", OwnerType.None, Board),
+            new PropertyCard2("PROPERTY CARD", "REMOVE ALL CREDITS \nFROM ONE OPPONENTS \nPROPERTY", OwnerType.None,Color.Blue, Board),
+            new PropertyCard2("PROPERTY CARD", "REMOVE ALL CREDITS \nFROM ONE OPPONENTS \nPROPERTY", OwnerType.None,Color.Blue, Board),
+            new PropertyCard2("PROPERTY CARD", "REMOVE ALL CREDITS \nFROM ONE OPPONENTS \nPROPERTY", OwnerType.None,Color.Blue, Board),
             
-            new PropertyCard3("Property", "TRIPLE RENT FROM ANY TILE FOR THE REST OF THE GAME", OwnerType.None, Board),
-            new PropertyCard3("Property", "TRIPLE RENT FROM ANY TILE FOR THE REST OF THE GAME", OwnerType.None, Board),
+            new PropertyCard3("PROPERTY CARD", "TRIPLE RENT FROM ANY \nTILE FOR THE REST OF \nTHE GAME", OwnerType.None,Color.Blue, Board),
+            new PropertyCard3("PROPERTY CARD", "TRIPLE RENT FROM ANY \nTILE FOR THE REST OF \nTHE GAME", OwnerType.None,Color.Blue, Board),
             
-            new PropertyCard4("Property", "GAIN 2 CREDITS ON ALL YOUR PROPERTIES", OwnerType.None, Board),
-            new PropertyCard4("Property", "GAIN 2 CREDITS ON ALL YOUR PROPERTIES", OwnerType.None, Board),
+            new PropertyCard4("PROPERTY CARD", "GAIN 2 CREDITS ON \nALL YOUR PROPERTIES", OwnerType.None,Color.Blue, Board),
+            new PropertyCard4("PROPERTY CARD", "GAIN 2 CREDITS ON \nALL YOUR PROPERTIES", OwnerType.None,Color.Blue, Board),
             
-            new TurnCard1("Turn", "PLAY AGAIN IMMEDIATELY AFTER YOUR TURN", OwnerType.None),
-            new TurnCard1("Turn", "PLAY AGAIN IMMEDIATELY AFTER YOUR TURN", OwnerType.None),
-            new TurnCard1("Turn", "PLAY AGAIN IMMEDIATELY AFTER YOUR TURN", OwnerType.None),
-            new TurnCard1("Turn", "PLAY AGAIN IMMEDIATELY AFTER YOUR TURN", OwnerType.None),
+            new TurnCard1("TURN CARD", "PLAY AGAIN IMMEDIATELY \nAFTER YOUR TURN", OwnerType.None, Color.Green),
+            new TurnCard1("TURN CARD", "PLAY AGAIN IMMEDIATELY \nAFTER YOUR TURN", OwnerType.None,Color.Green),
+            new TurnCard1("TURN CARD", "PLAY AGAIN IMMEDIATELY \nAFTER YOUR TURN", OwnerType.None,Color.Green),
+            new TurnCard1("TURN CARD", "PLAY AGAIN IMMEDIATELY \nAFTER YOUR TURN", OwnerType.None,Color.Green),
             
-            new TurnCard3("Turn", "TELEPORT TO YOUR MOST EXPENSIVE PROPERTY", OwnerType.None, Board),
+            new TurnCard3("TURN CARD", "TELEPORT TO YOUR MOST \nEXPENSIVE PROPERTY", OwnerType.None, Board, Color.Green),
+            new TurnCard3("TURN CARD", "TELEPORT TO YOUR MOST \nEXPENSIVE PROPERTY", OwnerType.None, Board, Color.Green),
         };
     }
 }

@@ -2,6 +2,7 @@
 using MP_POO_FINAL.GameScripts.Events;
 using MP_POO_FINAL.GameWindow.BoardInfo;
 using MP_POO_FINAL.GameWindow.Buttons;
+using MP_POO_FINAL.GameWindow.Cards;
 using MP_POO_FINAL.GameWindow.Characters;
 using MP_POO_FINAL.GameWindow.Dice;
 
@@ -12,8 +13,9 @@ public class EventManager
     private static readonly EventManager instance = new EventManager();
     public static EventManager Instance => instance;
     public GameEvents GameEvents { get; } = new GameEvents(); 
-    public GamePhase Phase { get; set; } = GamePhase.RollToStart;
-    
+    public GamePhase Phase { get; private set; } = GamePhase.RollToStart;
+    public Deck<Card> CardDeck { get; private set; }
+
     public bool IsAnimating { get; set; } = false;
     public bool AlreadyRolled { get; set; } = false;
     public ButtonsLogic ButtonsLogic { get; private set; }
@@ -97,6 +99,22 @@ public class EventManager
         this.board = board;
     }
     
+    public void InitDeck(Board board)
+    {
+        InitCards initCards = new InitCards(board);
+        CardDeck = new Deck<Card>(initCards.CardBuilder());
+    }
+    
+    public void AddCard(OwnerType owner, Card card)
+    {
+        Character character = GetCharacter(owner);
+        if (character.Inventory.Count < 5)
+        {
+            card.Owner = owner;
+            character.Inventory.Add(card);
+        }
+    }
+    
     public void InitButtonsLogic (ButtonsLogic buttonsLogic)
     {
         ButtonsLogic = buttonsLogic;
@@ -125,6 +143,16 @@ public class EventManager
         {
             BoardCell cell = board.GetCellIndex(player.BoardPosition);
             cell?.Sell(OwnerType.Player);
+        };
+
+        buttonsLogic.OnInventoryClicked += () =>
+        {
+            Phase = GamePhase.Inventory;
+        };
+
+        buttonsLogic.OnExitInventoryClicked += () =>
+        {
+            Phase = GamePhase.Playing;
         };
     }
 

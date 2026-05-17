@@ -16,8 +16,9 @@ public class GameScreen : IScreen
     
     private PhaseLogic phaseLogic;
     private GameUi gameUi;
-    private OnLandTurnUi onLandTurn;
+    private OnLandTurnUi onLandTurnUI;
     private PlayerTurnUI playerUI;
+    private InventoryUI inventoryUI;
     
     public GameScreen(Player player, AI ai1, AI ai2, DrawDice diceNumbers, Board board)
     {
@@ -27,7 +28,8 @@ public class GameScreen : IScreen
         this.diceNumbers = diceNumbers;
         gameUi      = new GameUi(player, ai1, ai2);
         playerUI = new PlayerTurnUI(diceNumbers, gameUi);
-        onLandTurn = new OnLandTurnUi(gameUi);
+        onLandTurnUI = new OnLandTurnUi(gameUi);
+        inventoryUI = new InventoryUI(gameUi);
         phaseLogic  = new PhaseLogic(gameUi, diceNumbers, ai1, ai2,  board);
     }
 
@@ -37,17 +39,28 @@ public class GameScreen : IScreen
         switch (EventManager.Instance.Phase)
         {
             case GamePhase.RollToStart:
+            {
                 buttonLogic.StartDiceRollButton(gameUi.startDiceRollButton, mouse, EventManager.Instance.GameEvents);
                 break;
+            }
             case GamePhase.Playing:
+            {
                 buttonLogic.DiceButton(gameUi.diceButton, mouse,player,board);
                 buttonLogic.InventoryButton(gameUi.inventoryButton, mouse);
                 break;
+            }
             case GamePhase.OnLandTurn:
-                buttonLogic.EndTurnButton(onLandTurn.endTurnButton, mouse);
-                buttonLogic.BuyButton(onLandTurn.buyButton, mouse);
-                buttonLogic.SellButton(onLandTurn.sellButton, mouse);
+            {
+                buttonLogic.EndTurnButton(onLandTurnUI.endTurnButton, mouse);
+                buttonLogic.BuyButton(onLandTurnUI.buyButton, mouse);
+                buttonLogic.SellButton(onLandTurnUI.sellButton, mouse);
                 break;
+            }
+            case GamePhase.Inventory:
+            {
+                buttonLogic.ExitInventoryButton(inventoryUI.exitButton,mouse);
+                break;
+            }
         }
     }
 

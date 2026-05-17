@@ -1,6 +1,7 @@
 ﻿using MP_POO_FINAL.GameWindow.BoardInfo;
 using MP_POO_FINAL.GameWindow.Characters;
 using MP_POO_FINAL.Managers;
+using Raylib_cs;
 
 namespace MP_POO_FINAL.GameWindow.Cards.ActionCards;
 
@@ -8,12 +9,12 @@ public class PropertyCard1 : Card
 {
     private Board Board;
     private int number { get; set; } = 0;
-    
-    public PropertyCard1(string type, string description, OwnerType owner, Board board) : base(type, description, owner)
+
+    public PropertyCard1(string type, string description, OwnerType owner, Color color, Board board) : base(type, description, owner, color)
     {
         Board = board;
     }
-
+    
     //Robas la propiedad de un rival pagando solo el 30% de su valor
     public override void ActionCard(EventManager manager, OwnerType user)
     {

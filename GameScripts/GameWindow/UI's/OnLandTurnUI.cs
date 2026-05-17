@@ -28,7 +28,6 @@ public class OnLandTurnUi
     
     public void DrawOnLadUi(Board board)
     {
-        
         BoardCell boardCell = board.GetCellIndex(player.BoardPosition);
 
         if (boardCell == null)

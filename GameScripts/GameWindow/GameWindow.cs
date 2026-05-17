@@ -1,5 +1,6 @@
 ﻿using MP_POO_FINAL.GameWindow.BoardInfo;
 using MP_POO_FINAL.GameWindow.Buttons;
+using MP_POO_FINAL.GameWindow.Cards;
 using MP_POO_FINAL.GameWindow.Characters;
 using MP_POO_FINAL.GameWindow.Dice;
 using MP_POO_FINAL.GameWindow.Screens;
@@ -36,6 +37,11 @@ public class GameWindow
         
         EventManager.Instance.InitCharacters(player,ai1,ai2);
         EventManager.Instance.InitBoard(board);
+        EventManager.Instance.InitDeck(board);
+        foreach (Card card in EventManager.Instance.CardDeck.GetCards())
+        {
+            Console.WriteLine(card.Description);
+        }
         EventManager.Instance.InitButtonsLogic(buttonLogic);
         
         gameScreen =  new GameScreen(player,ai1,ai2, diceNumbers, board);

@@ -4,6 +4,7 @@ public class Deck<T>
 {
     private Stack<T> cards;
     private List<T> originalCards;
+    public IEnumerable<T> GetCards() => cards;
 
     public Deck(List<T> initialCards)
     {
@@ -20,13 +21,13 @@ public class Deck<T>
         cards = new Stack<T>(shuffled);
     }
     
-    public T DrawCard()
+    public T TakeCard()
     {
         if (cards.Count == 0)
         {
             Shuffle(); //Cuando se cogan todas las cartas del mazo se rebaraja y se usa uno nuevo
         }
-
+        
         return cards.Pop();
     }
 }

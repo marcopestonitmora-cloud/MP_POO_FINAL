@@ -1,6 +1,7 @@
 ﻿using MP_POO_FINAL.GameWindow.BoardInfo;
 using MP_POO_FINAL.GameWindow.Characters;
 using MP_POO_FINAL.Managers;
+using Raylib_cs;
 
 namespace MP_POO_FINAL.GameWindow.Cards.ActionCards;
 
@@ -8,7 +9,7 @@ public class TurnCard3 : Card
 {
     private Board Board;
     
-    public TurnCard3(string type, string description, OwnerType owner, Board board) : base(type, description, owner)
+    public TurnCard3(string type, string description, OwnerType owner, Board board, Color color) : base(type, description, owner, color)
     {
         this.Board = board;
     }

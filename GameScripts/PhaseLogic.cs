@@ -17,6 +17,7 @@ public class PhaseLogic
     private AiLogic aiLogic;
 
     private OnLandTurnUi onLandTurnUI;
+    private InventoryUI inventoryUI;
     private AiTurnUi aiTurnUI;
     private PlayerTurnUI playerUI;
     private GameUi gameUI;
@@ -39,6 +40,7 @@ public class PhaseLogic
         this.board = board;
         
         aiTurnUI = new AiTurnUi(diceNumbers);
+        inventoryUI = new InventoryUI(gameUi);
         playerUI = new PlayerTurnUI(diceNumbers,gameUi);
         onLandTurnUI = new OnLandTurnUi(gameUi);
         propetiesUI = new PropetiesUI(board);
@@ -103,6 +105,11 @@ public class PhaseLogic
                 gameUI.DrawEssentials();
                 propetiesUI.DrawPropetiesUI();
                 onLandTurnUI.DrawOnLadUi(board);
+                break;
+            }
+            case GamePhase.Inventory:
+            {
+                inventoryUI.DrawInventory();
                 break;
             }
         }

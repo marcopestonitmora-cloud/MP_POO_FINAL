@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Numerics;
+using MP_POO_FINAL.GameWindow.Cards;
 using MP_POO_FINAL.Managers;
 using Raylib_cs;
 
@@ -51,20 +52,23 @@ public class PropertyCell: BoardCell
         EventManager.Instance.GetCharacter(Owner).WinInvicions(rent);
     }
     
-    // En PropertyCell
     public override void Buy(OwnerType buyer)
     {
         if (Owner == OwnerType.None)
         {
-            EventManager.Instance.GetCharacter(buyer).LoseInvicions(Price);
-            Owner = buyer;
-        }
+            if (EventManager.Instance.GetCharacter(buyer).Coins.Amount < Price)
+                return;
         
+            Owner = buyer;
+            EventManager.Instance.GetCharacter(buyer).LoseInvicions(Price);
+        }
         else if (Owner == buyer)
         {
+            if (EventManager.Instance.GetCharacter(buyer).Coins.Amount < CreditPrice)
+                return;
+        
             EventManager.Instance.GetCharacter(buyer).LoseInvicions(CreditPrice);
             CreditCounter++;
-            Console.WriteLine("CreditCounter: " + CreditCounter);
         }
         else
         {

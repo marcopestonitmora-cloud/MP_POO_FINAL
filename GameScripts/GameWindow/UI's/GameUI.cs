@@ -21,7 +21,7 @@ public class GameUi
     }
     
     private Texture2D inviBoard;
-    private Texture2D background;
+    public Texture2D background;
     private Texture2D playerIcone;
     private Texture2D ai1Icone;
     private Texture2D ai2Icone;
