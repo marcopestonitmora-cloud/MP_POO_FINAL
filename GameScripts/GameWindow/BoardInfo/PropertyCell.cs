@@ -57,15 +57,22 @@ public class PropertyCell: BoardCell
         if (Owner == OwnerType.None)
         {
             if (EventManager.Instance.GetCharacter(buyer).Coins.Amount < Price)
+            {
                 return;
+            }
         
             Owner = buyer;
             EventManager.Instance.GetCharacter(buyer).LoseInvicions(Price);
+            
+            Card card = EventManager.Instance.CardDeck.TakeCard();
+            EventManager.Instance.AddCard(buyer, card);
         }
         else if (Owner == buyer)
         {
             if (EventManager.Instance.GetCharacter(buyer).Coins.Amount < CreditPrice)
+            {
                 return;
+            }
         
             EventManager.Instance.GetCharacter(buyer).LoseInvicions(CreditPrice);
             CreditCounter++;

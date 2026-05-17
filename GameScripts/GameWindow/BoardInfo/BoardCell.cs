@@ -9,7 +9,7 @@ public abstract class BoardCell
 {
     public int Index { get; private set; }
     public Vector2 ScreenPosition { get; private set; }
-    protected OwnerType Owner { get; set; }
+    public OwnerType Owner { get; set; }
     public OwnerType CellOwner
     {
         get => Owner;

@@ -7,7 +7,7 @@ namespace MP_POO_FINAL.GameWindow.BoardInfo;
 
 public class MonsterCell: BoardCell
 {
-    private int Price          { get; set; }
+    public int Price          { get; set; }
     private int RentPrice          { get; set; }
     private int SellPrice         { get; set; }
     public Color Color;

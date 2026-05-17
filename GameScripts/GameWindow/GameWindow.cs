@@ -2,6 +2,7 @@
 using MP_POO_FINAL.GameWindow.Buttons;
 using MP_POO_FINAL.GameWindow.Cards;
 using MP_POO_FINAL.GameWindow.Characters;
+using MP_POO_FINAL.GameWindow.Characters.StateMachine;
 using MP_POO_FINAL.GameWindow.Dice;
 using MP_POO_FINAL.GameWindow.Screens;
 using MP_POO_FINAL.GameWindow.UI_s;
@@ -15,7 +16,8 @@ public class GameWindow
     private MouseTracker mouse = new MouseTracker();
     private ButtonsLogic buttonLogic = new ButtonsLogic();
     private DrawDice diceNumbers =  new DrawDice();
-    private AiLogic aiLogic;
+    private AILogic ai1Logic;
+    private AILogic ai2Logic;
     
     private Board board;
     private Player player;
@@ -44,8 +46,9 @@ public class GameWindow
         }
         EventManager.Instance.InitButtonsLogic(buttonLogic);
         
+        ai1Logic  = new AILogic(ai1, board);
+        ai2Logic  = new AILogic(ai2, board);
         gameScreen =  new GameScreen(player,ai1,ai2, diceNumbers, board);
-        aiLogic= new AiLogic(ai1,ai2, board);
         
         Raylib.InitWindow(1920, 1080, "Monopoly");
 

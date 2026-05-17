@@ -1,5 +1,6 @@
 ﻿using MP_POO_FINAL.GameWindow.BoardInfo;
 using MP_POO_FINAL.GameWindow.Characters;
+using MP_POO_FINAL.GameWindow.Characters.StateMachine;
 using MP_POO_FINAL.GameWindow.Dice;
 using MP_POO_FINAL.GameWindow.UI_s;
 using MP_POO_FINAL.Managers;
@@ -14,7 +15,8 @@ public class PhaseLogic
     
     private WhoWinsTheRollUi rollWinnerUI = new WhoWinsTheRollUi();
     private StartRollUI startRollUI = new StartRollUI();
-    private AiLogic aiLogic;
+    private AILogic ai1Logic;
+    private AILogic ai2Logic;
 
     private OnLandTurnUi onLandTurnUI;
     private InventoryUI inventoryUI;
@@ -44,7 +46,8 @@ public class PhaseLogic
         playerUI = new PlayerTurnUI(diceNumbers,gameUi);
         onLandTurnUI = new OnLandTurnUi(gameUi);
         propetiesUI = new PropetiesUI(board);
-        aiLogic = new AiLogic(ai1, ai2, board);
+        ai1Logic = new AILogic(ai1, board);
+        ai2Logic = new AILogic(ai2, board);
     }
 
     public void SceneChange()
@@ -84,7 +87,7 @@ public class PhaseLogic
                 if (!aiTurnStarted)
                 {
                     aiTurnStarted = true;
-                    aiLogic.AiRoll();
+                    ai1Logic.ExecuteTurn();
                 }
                 break;
             }
@@ -96,7 +99,7 @@ public class PhaseLogic
                 if (!aiTurnStarted)
                 {
                     aiTurnStarted = true;
-                    aiLogic.AiRoll();
+                    ai2Logic.ExecuteTurn();
                 }
                 break;
             }

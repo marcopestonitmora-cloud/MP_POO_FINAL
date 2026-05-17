@@ -7,20 +7,12 @@ namespace MP_POO_FINAL.GameWindow.Characters;
 
 public class AI : Character
 {
-    public GameEvents gameEvents;
-    
     public AI(int invicoinsCounter, OwnerType ownerType) : base(invicoinsCounter)
     {
         OwnerType = ownerType;
     }
 
-    protected override OwnerType OwnerType { get; }
-    
-    protected override async Task CellJump(int currentPosition, int steps, Board board)
-    {
-        await base.CellJump(currentPosition, steps, board);
-        // quita el AiTurnEnd de aqui
-    }
+    public override OwnerType OwnerType { get; }
 
     public override async Task Move(int diceNumber, Board board)
     {
@@ -30,6 +22,5 @@ public class AI : Character
         await Task.Delay(2000);
         
         EventManager.Instance.IsAnimating = false;
-        EventManager.Instance.GameEvents.aiEvents.AiTurnEnd();
     }
 }

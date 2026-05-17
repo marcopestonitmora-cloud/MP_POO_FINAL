@@ -14,7 +14,7 @@ public class Player: Character
         OwnerType = ownerType;
     }
 
-    protected override OwnerType OwnerType { get; }
+    public override OwnerType OwnerType { get; }
 
     public override async Task Move (int diceNumber, Board board)
     {
