@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using MP_POO_FINAL.Managers;
 
 namespace MP_POO_FINAL.GameWindow.BoardInfo;
 
@@ -8,13 +9,11 @@ public class DoorCell: BoardCell
     
     public override void OnLand(OwnerType currentPlayer)
     {
-        Console.WriteLine("DoorCell");
+        EventManager.Instance.GetCharacter(currentPlayer).SkippedTurns = 1;
+        Console.WriteLine("La puerta esta cerrada, pierdes un turno!");
     }
 
-    public override void DrawOnLandUI()
-    {
-        
-    }
+    public override void DrawOnLandUI() {}
     
     public override void Buy(OwnerType currentPlayer) {}
     public override void Sell(OwnerType currentPlayer){}

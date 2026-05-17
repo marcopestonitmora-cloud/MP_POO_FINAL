@@ -29,7 +29,14 @@ public class AILogic
     
         buyLogic.OnLand();
         sellLogic.EvaluateSell();
-    
+
+        if (ai.canRollAgain)
+        {
+            ai.canRollAgain = false;
+            await ExecuteTurn(); // vuelve a ejecutar el turno
+            return;
+        }
+
         await Task.Delay(1000);
         EventManager.Instance.GameEvents.aiEvents.AiTurnEnd();
     }

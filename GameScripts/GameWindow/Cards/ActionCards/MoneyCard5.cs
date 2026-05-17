@@ -26,7 +26,7 @@ public class MoneyCard5 : Card
         }
         else if (number == 1)
         {
-            EventManager.Instance.GetCharacter(user).LoseInvicions(money);
+            EventManager.Instance.GetCharacter(user).LoseInvicions(money/2);
         }
     }
 }

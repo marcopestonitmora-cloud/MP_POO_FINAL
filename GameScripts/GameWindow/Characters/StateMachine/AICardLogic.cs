@@ -19,8 +19,11 @@ public class AICardLogic
     //Antes de tirar los dados la IA analiza su situacion para usar una carta o no
     public void UseCard()
     {
+        Console.WriteLine($"{ai.OwnerType} tiene {ai.Inventory.Count} cartas y {ai.Coins.Amount} monedas");
+    
         if (ai.Inventory.Count == 0)
         {
+            Console.WriteLine($"{ai.OwnerType} no tiene cartas");
             return;
         }
 
@@ -30,17 +33,21 @@ public class AICardLogic
 
         foreach (Card card in ai.Inventory)
         {
-            if (card.Type == "Money" && moneyCard == null)
+            Console.WriteLine($"Tipo de carta: '{card.Type}'");
+            
+            if (card.Type == "MONEY CARD" && moneyCard == null)
             {
                 moneyCard    = card;
             }
-            if (card.Type == "Property" && propertyCard == null)
+            if (card.Type == "PROPERTY CARD" && propertyCard == null)
             {
                 propertyCard = card;
             }
+            if (card.Type == "TURN CARD" && turnCard == null)
             {
-                if (card.Type == "Turn"     && turnCard     == null) turnCard     = card;
+                turnCard = card;
             }
+            
         }
 
         int propertyCount = CountProperties();

@@ -82,5 +82,31 @@ public class GameUi
         Ai1.Coins.Draw(120,240);
         Ai2.Coins.Draw(120,400);
     }
+    
+    public async void DrawGameOver()
+    {
+        Raylib.ClearBackground(Color.Black);
+        Raylib.DrawTextureEx(background, new Vector2(0, 0), 0f, 1.3f, Color.White);
+
+        string text = "You went bankrupt.\nYou lost.";
+        int fontSize  = 80;
+        int textWidth = Raylib.MeasureText(text, fontSize);
+
+        Raylib.DrawRectangle(960 - textWidth / 2 - 20, 380, textWidth + 40, 220, Color.Black);
+        Raylib.DrawText(text, 960 - textWidth / 2, 400, fontSize, Color.White);
+    }
+    
+    public void DrawGameWin()
+    {
+        Raylib.ClearBackground(Color.Black);
+        Raylib.DrawTextureEx(background, new Vector2(0, 0), 0f, 1.3f, Color.White);
+
+        string text = "You defeated your rivals.\nYou are now the leader of the class.\nYou have taken control of INVI.\nWell... until Felipe takes it from you.";
+        int fontSize  = 60;
+        int textWidth = Raylib.MeasureText(text, fontSize);
+
+        Raylib.DrawRectangle(960 - textWidth / 2 - 20, 300, textWidth + 40, 320, Color.Black);
+        Raylib.DrawText(text, 960 - textWidth / 2, 320, fontSize, Color.Gold);
+    }
 }
 

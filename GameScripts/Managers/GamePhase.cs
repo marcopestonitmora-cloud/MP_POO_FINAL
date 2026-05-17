@@ -1,3 +1,3 @@
 ﻿namespace MP_POO_FINAL.Managers;
 
-public enum GamePhase { RollToStart, WhoWinsTheRoll ,Playing, Ai1Turn, Ai2Turn, OnLandTurn, Inventory, GameOver }
+public enum GamePhase { RollToStart, WhoWinsTheRoll ,Playing, Ai1Turn, Ai2Turn, OnLandTurn, Inventory, GameOver,Win, BackToStart }

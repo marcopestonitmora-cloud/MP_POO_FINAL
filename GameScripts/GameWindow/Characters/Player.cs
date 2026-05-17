@@ -16,11 +16,6 @@ public class Player: Character
 
     public override OwnerType OwnerType { get; }
 
-    public override async Task Move (int diceNumber, Board board)
-    {
-        await base.Move(diceNumber, board);
-    }
-
     protected override async Task CellJump(int currentPosition, int steps, Board board)
     {
          await base.CellJump(currentPosition, steps, board);

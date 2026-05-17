@@ -28,24 +28,28 @@ public class PropertyCell: BoardCell
 
     public override void OnLand(OwnerType currentPlayer)
     {
-        if (Owner == OwnerType.None || currentPlayer == Owner)
-        {
-            return;
-        }
+        if (Owner == OwnerType.None || currentPlayer == Owner) return;
 
         int rent = RentPrice;
-
         if (CreditCounter >= 1)
         {
             rent = RentPrice * 2;
         }
+
         if (CreditCounter >= 3)
         {
             rent = RentPrice * 4;
         }
+
         if (CreditCounter >= 6)
         {
             rent = RentPrice * 8;
+        }
+
+        int playerMoney = EventManager.Instance.GetCharacter(currentPlayer).Coins.Amount;
+        if (playerMoney < rent)
+        {
+            rent = playerMoney;
         }
 
         EventManager.Instance.GetCharacter(currentPlayer).LoseInvicions(rent);

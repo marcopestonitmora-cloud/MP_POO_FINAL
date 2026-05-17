@@ -15,9 +15,13 @@ public class PropetiesUI
 
     public void DrawPropetiesUI()
     {
-        int increasePlayer = 0;
-        int increaseAi1 = 0;
-        int increaseAi2 = 0;
+        int propertyPlayer = 0;
+        int propertyAi1 = 0;
+        int propertyAi2 = 0;
+
+        int monsterPlayer = 0;
+        int monsterAi1 = 0;
+        int monsterAi2 = 0;
 
         foreach (BoardCell cell in board.GetAllCells())
         {
@@ -27,23 +31,23 @@ public class PropetiesUI
                 {
                     case OwnerType.Player:
                     {
-                        Raylib.DrawRectangle(130 + increasePlayer, 160, 20, 40, property.Color);
-                        Raylib.DrawText($"{property.CreditCounter}", 135 + increasePlayer, 170, 20, Color.White);
-                        increasePlayer += 25;
+                        Raylib.DrawRectangle(132 + propertyPlayer, 160, 20, 40, property.Color);
+                        Raylib.DrawText($"{property.CreditCounter}", 135 + propertyPlayer, 170, 20, Color.White);
+                        propertyPlayer += 25;
                         break;
                     }
                     case OwnerType.Ai1:
                     {
-                        Raylib.DrawRectangle(132 + increaseAi1, 320, 20, 40, property.Color);
-                        Raylib.DrawText($"{property.CreditCounter}", 135 + increaseAi1, 330, 20, Color.White);
-                        increaseAi1 += 25;
+                        Raylib.DrawRectangle(132 + propertyAi1, 320, 20, 40, property.Color);
+                        Raylib.DrawText($"{property.CreditCounter}", 135 + propertyAi1, 330, 20, Color.White);
+                        propertyAi1 += 25;
                         break;
                     }
                     case OwnerType.Ai2:
                     {
-                        Raylib.DrawRectangle(132 + increaseAi2, 480, 20, 40, property.Color);
-                        Raylib.DrawText($"{property.CreditCounter}", 135 + increaseAi2, 490, 20, Color.White);
-                        increaseAi2 += 25;
+                        Raylib.DrawRectangle(132 + propertyAi2, 480, 20, 40, property.Color);
+                        Raylib.DrawText($"{property.CreditCounter}", 135 + propertyAi2, 490, 20, Color.White);
+                        propertyAi2 += 25;
                         break;
                     }
                 }
@@ -54,23 +58,23 @@ public class PropetiesUI
                 {
                     case OwnerType.Player:
                     {
-                        Raylib.DrawRectangle(130 + increasePlayer, 45, 20, 40, monster.Color);
-                        Raylib.DrawText("M", 132 + increasePlayer, 55, 20, Color.Black);
-                        increasePlayer += 25;
+                        Raylib.DrawRectangle(130 + monsterPlayer, 45, 20, 40, monster.Color);
+                        Raylib.DrawText("M", 132 + monsterPlayer, 55, 20, Color.Black);
+                        monsterPlayer += 25;
                         break;
                     }
                     case OwnerType.Ai1:
                     {
-                        Raylib.DrawRectangle(130 + increaseAi1, 205, 20, 40, monster.Color);
-                        Raylib.DrawText("M", 132 + increaseAi1, 215, 20, Color.Black);
-                        increaseAi1 += 25;
+                        Raylib.DrawRectangle(130 + monsterAi1, 205, 20, 40, monster.Color);
+                        Raylib.DrawText("M", 132 + monsterAi1, 215, 20, Color.Black);
+                        monsterAi1 += 25;
                         break;
                     }
                     case OwnerType.Ai2:
                     {
-                        Raylib.DrawRectangle(130 + increaseAi2, 365, 20, 40, monster.Color);
-                        Raylib.DrawText("M", 132 + increaseAi2, 375, 20, Color.Black);
-                        increaseAi2 += 25;
+                        Raylib.DrawRectangle(130 + monsterAi2, 365, 20, 40, monster.Color);
+                        Raylib.DrawText("M", 132 + monsterAi2, 375, 20, Color.Black);
+                        monsterAi2 += 25;
                         break;
                     }
                 }

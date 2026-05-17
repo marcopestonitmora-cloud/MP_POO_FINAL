@@ -21,4 +21,8 @@ public class StartScreen : IScreen
     }
 
     public void Draw() => startUi.LoadWindowInfo();
+    public void Reset()
+    {
+        NextState = null;
+    }
 }

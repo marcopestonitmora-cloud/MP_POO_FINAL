@@ -29,7 +29,7 @@ public static class BoardFactory
             new MonsterCell(18, new Vector2(1000f,60f),200,50, 100, Color.Blue),
             new PropertyCell(19, new Vector2(1120f, 60f), 300, 150, 0, 30, 150, Color.Yellow),
             new PropertyCell(20,  new Vector2(1240f, 60f), 340, 150, 0, 34, 170, Color.Yellow),
-            new TheClassCell(21, new Vector2(1370f,60f)),
+            new TheClassCell(21, new Vector2(1370f,60f),""),
             new PropertyCell(22, new Vector2(1370f, 180f), 380, 200, 0, 38, 190, Color.Green),
             new LuckyCell(23, new Vector2(1370f,300f)),
             new PropertyCell(24, new Vector2(1370f, 430f), 400, 200, 0, 40, 200, Color.Green),

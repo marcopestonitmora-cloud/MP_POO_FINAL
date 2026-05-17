@@ -16,12 +16,18 @@ public abstract class Character
     private int CurrentPosition {get; set;} = 0;
     public DrawInvicoins Coins {get; set;}
     public bool canRollAgain { get; set; } = false;
+    public int SkippedTurns { get; set; } = 0;
 
     protected Character(int invicoinsCounter)
     {
         Coins = new DrawInvicoins(invicoinsCounter);
         ScreenPosition = new Vector2(1370, 960);
         Inventory = new List<Card>();
+        Coins.OnBankRuptcy += () =>
+        {
+            IsBankrupt = true;
+            EventManager.Instance.CheckGameOver();
+        };
     }
 
     public virtual async Task Move(int diceNumber, Board board)
@@ -56,17 +62,7 @@ public abstract class Character
 
     public virtual void LoseInvicions(int cellPrice)
     {
-        if (Coins.Amount < cellPrice)
-        {
-            return;
-        }
-        
-        Coins.Amount -= cellPrice;
-        
-        if (Coins.Amount <= 0)
-        {
-            IsBankrupt = true;
-        }
+        Coins.Amount -= cellPrice; 
     }
 
     public virtual void WinInvicions(int cellPrice)

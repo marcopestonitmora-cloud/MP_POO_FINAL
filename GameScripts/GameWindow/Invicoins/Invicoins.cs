@@ -2,6 +2,7 @@
 
 public class Invicoins
 {
+    public event Action OnBankRuptcy;
     private int amount;
     public int Amount
     {
@@ -12,7 +13,7 @@ public class Invicoins
             {
                 amount = 999;
             }
-            else if (value < 0)
+            else if (value <= 0)
             {
                 amount = 0;
                 BankRuptcy();
@@ -31,6 +32,7 @@ public class Invicoins
 
     private void BankRuptcy()
     {
-        
+        Console.WriteLine("BankRuptcy llamado!");
+        OnBankRuptcy?.Invoke();
     }
 }

@@ -16,10 +16,10 @@ public abstract class BoardCell
         set => Owner = value;
     }
 
-    protected Texture2D buyIcone;
-    protected Texture2D sellIcone;
-    protected string buyText = "BUY";
-    protected string sellText = "SELL";
+    private Texture2D buyIcone;
+    private Texture2D sellIcone;
+    private string buyText = "BUY";
+    private string sellText = "SELL";
 
     protected BoardCell(int index, Vector2 screenPosition)
     {

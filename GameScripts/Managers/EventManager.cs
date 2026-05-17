@@ -13,7 +13,7 @@ public class EventManager
     private static readonly EventManager instance = new EventManager();
     public static EventManager Instance => instance;
     public GameEvents GameEvents { get; } = new GameEvents(); 
-    public GamePhase Phase { get; private set; } = GamePhase.RollToStart;
+    public GamePhase Phase { get; set; } = GamePhase.RollToStart;
     public Deck<Card> CardDeck { get; private set; }
 
     public bool IsAnimating { get; set; } = false;
@@ -62,6 +62,17 @@ public class EventManager
                 return;
             }
             
+            if (ai2.IsBankrupt || ai2.SkippedTurns > 0)
+            {
+                if (ai2.SkippedTurns > 0)
+                {
+                    ai2.SkippedTurns--;
+                }
+                CurrentTurn = 2;
+                Phase = GamePhase.Playing;
+                return;
+            }
+            
             CurrentTurn = 1; 
             Phase = GamePhase.Ai2Turn;
         };
@@ -73,6 +84,14 @@ public class EventManager
                 ai2.canRollAgain = false;
                 GameEvents.diceRoll.Reset();
                 Phase = GamePhase.Ai2Turn;
+                return;
+            }
+            
+            if (player.SkippedTurns > 0)
+            {
+                player.SkippedTurns--;
+                CurrentTurn = 0;
+                Phase = GamePhase.Ai1Turn;
                 return;
             }
 
@@ -128,6 +147,14 @@ public class EventManager
                 Phase = GamePhase.Playing;
                 return;
             }
+    
+            if (ai1.IsBankrupt || ai1.SkippedTurns > 0)
+            {
+                if (ai1.SkippedTurns > 0) ai1.SkippedTurns--;
+                CurrentTurn = 1;
+                Phase = GamePhase.Ai2Turn;
+                return;
+            }
 
             CurrentTurn = 0;
             Phase = GamePhase.Ai1Turn;
@@ -176,6 +203,24 @@ public class EventManager
             {
                 throw new InvalidOperationException("OwnerType no válido");
             }
+        }
+    }
+    
+    public async void CheckGameOver()
+    {
+        if (player.IsBankrupt)
+        {
+            Phase = GamePhase.GameOver;
+            await Task.Delay(4000);
+            Phase = GamePhase.BackToStart; // vuelve al inicio
+            return;
+        }
+
+        if (ai1.IsBankrupt && ai2.IsBankrupt)
+        {
+            Phase = GamePhase.Win;
+            await Task.Delay(4000);
+            Phase = GamePhase.BackToStart;
         }
     }
 }

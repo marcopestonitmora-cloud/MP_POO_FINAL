@@ -23,26 +23,30 @@ public class MonsterCell: BoardCell
     
     public override void OnLand(OwnerType currentPlayer)
     {
-        if (Owner == OwnerType.None || currentPlayer == Owner)
+        if (Owner == OwnerType.None || currentPlayer == Owner) return;
+
+        int rent = RentPrice;
+        int playerMoney = EventManager.Instance.GetCharacter(currentPlayer).Coins.Amount;
+
+        if (playerMoney < rent)
         {
-            return;
+            rent = playerMoney; 
         }
-        
-        EventManager.Instance.GetCharacter(currentPlayer).LoseInvicions(RentPrice);
-        EventManager.Instance.GetCharacter(Owner).WinInvicions(RentPrice);
+
+        EventManager.Instance.GetCharacter(currentPlayer).LoseInvicions(rent);
+        EventManager.Instance.GetCharacter(Owner).WinInvicions(rent);
     }
     
     public override void Buy(OwnerType buyer)
     {
-        if (Owner == buyer)
-        {
-            return;
-        }
-        
+        if (Owner == buyer) return;
+    
         if (Owner == OwnerType.None)
         {
-            EventManager.Instance.GetCharacter(buyer).LoseInvicions(Price);
+            if (EventManager.Instance.GetCharacter(buyer).Coins.Amount < Price) return;
+        
             Owner = buyer;
+            EventManager.Instance.GetCharacter(buyer).LoseInvicions(Price);
         }
     }
 

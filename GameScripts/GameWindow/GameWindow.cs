@@ -31,9 +31,9 @@ public class GameWindow
 
     public void Run()
     {
-        player = new Player(500,OwnerType.Player);
-        ai1 = new AI(500,OwnerType.Ai1);
-        ai2 = new AI(500, OwnerType.Ai2);
+        player = new Player(999,OwnerType.Player);
+        ai1 = new AI(0,OwnerType.Ai1);
+        ai2 = new AI(0, OwnerType.Ai2);
         
         board  = BoardFactory.CreateBoard();
         
@@ -77,11 +77,41 @@ public class GameWindow
                 currentScreen = gameScreen;
             }
 
+            if (EventManager.Instance.Phase == GamePhase.BackToStart && currentScreen == gameScreen)
+            {
+                currentScreen = startScreen;
+                startScreen.Reset();
+                ResetGame();
+            }
+
             Raylib.BeginDrawing();
             currentScreen.Draw();
             Raylib.EndDrawing();
         }
 
         Raylib.CloseWindow();
+    }
+    
+    private void ResetGame()
+    {
+        player = new Player(500, OwnerType.Player);
+        ai1    = new AI(500, OwnerType.Ai1);
+        ai2    = new AI(500, OwnerType.Ai2);
+        board  = BoardFactory.CreateBoard();
+
+        EventManager.Instance.InitCharacters(player, ai1, ai2);
+        EventManager.Instance.InitBoard(board);
+        EventManager.Instance.InitDeck(board);
+        EventManager.Instance.Phase = GamePhase.RollToStart;
+
+        foreach (var cell in board.GetAllCells())
+            cell.LoadAssets();
+
+        player.Coins.LoadNumbers();
+        ai1.Coins.LoadNumbers();
+        ai2.Coins.LoadNumbers();
+
+        gameScreen = new GameScreen(player, ai1, ai2, diceNumbers, board);
+        gameScreen.LoadAssets();
     }
 }

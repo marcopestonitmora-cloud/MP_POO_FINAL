@@ -14,7 +14,9 @@ public class NachoCell: BoardCell
     
     public override void OnLand(OwnerType currentPlayer)
     {
-        EventManager.Instance.GetCharacter(currentPlayer).LoseInvicions(NachosBoardPrice);
+        int money = EventManager.Instance.GetCharacter(currentPlayer).Coins.Amount;
+        int toPay = Math.Min(money, NachosBoardPrice);
+        EventManager.Instance.GetCharacter(currentPlayer).LoseInvicions(toPay);
     }
 
     public override void DrawOnLandUI() {}

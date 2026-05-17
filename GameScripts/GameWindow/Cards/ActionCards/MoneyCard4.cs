@@ -13,7 +13,7 @@ public class MoneyCard4: Card
 
     public override void ActionCard(EventManager manager, OwnerType owner)
     {
-        throw new NotImplementedException();
+        EconomicCrisis(owner);
     }
 
     //TODOS LOS JUGADORES PIERDEN 100 INVICOINS

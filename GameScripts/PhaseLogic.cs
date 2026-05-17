@@ -115,6 +115,16 @@ public class PhaseLogic
                 inventoryUI.DrawInventory();
                 break;
             }
+            case GamePhase.GameOver:
+            {
+                gameUI.DrawGameOver();
+                break;
+            }
+            case GamePhase.Win:
+            {
+                gameUI.DrawGameWin();
+                break;
+            }
         }
     }
 }
